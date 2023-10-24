@@ -5,6 +5,18 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// generator erd {
+//   provider = "prisma-erd-generator"
+//   theme    = "dark"
+//   output   = "../ERD.svg"
+// }
+
+generator markdown {
+  provider = "prisma-markdown"
+  output   = "./ERD.md"
+  title    = "Doe Aqui"
+}
+
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
@@ -13,18 +25,33 @@ datasource db {
 model User {
   id String @id @default(uuid())
 
-  name      String
-  email     String      @unique
-  password  String
-  Campaigns Campaigns[]
+  name     String
+  email    String @unique
+  password String
+
+  campaigns Campaign[]
 }
 
-model Campaigns {
+model Image {
+  id         String @id @default(uuid())
+  campaignId String @map("campaign_id")
+
+  url String
+
+  campaign Campaign @relation(fields: [campaignId], references: [id])
+}
+
+model Campaign {
   id     String @id @default(uuid())
-  userId String
+  userId String @map("user_id")
 
-  name        String
+  title       String
   description String
+  goal        Decimal @default(0)
+  totalRaised Decimal @default(0) @map("total_raised")
 
-  user User @relation(fields: [userId], references: [id])
+  pixKey String @map("pix_key")
+
+  user   User    @relation(fields: [userId], references: [id])
+  images Image[]
 }
