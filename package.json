@@ -17,7 +17,6 @@
     "react-dom": "^18"
   },
   "devDependencies": {
-    "@mermaid-js/mermaid-cli": "^10.5.1",
     "@rocketseat/eslint-config": "^1.2.0",
     "@types/node": "^20",
     "@types/react": "^18",
@@ -27,7 +26,6 @@
     "eslint-config-next": "13.5.4",
     "postcss": "^8",
     "prisma": "^5.4.1",
-    "prisma-erd-generator": "^1.11.1",
     "prisma-markdown": "^1.0.3",
     "tailwindcss": "^3",
     "typescript": "5.2"
