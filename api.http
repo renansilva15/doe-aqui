@@ -27,7 +27,7 @@ GET {{baseUrl}}/api/users/me
 
 
 ###
-GET {{baseUrl}}/api/auth/logout
+POST {{baseUrl}}/api/auth/logout
 
 ###
 POST http://localhost:3000/api/pix
