@@ -1,4 +1,33 @@
-GET http://localhost:3000/api/users
+@baseUrl = http://localhost:3000
+@authToken = eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyOWVkODRlZS00MmViLTRhZGYtYTBjYy1kMjVmNDgwZjdhNjEiLCJleHAiOjE2OTg1MTE1NzAsImlhdCI6MTY5ODUwNzk3MH0.dx3jujHUQV2LAddoimDY-uCX0tj2MMe9oeydgbSS5UA
+
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Example",
+  "email": "example@example.com",
+  "password": "password123",
+  "passwordConfirm": "password123"
+}
+
+
+###
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "example@example.com",
+  "password": "password123"
+}
+
+
+###
+GET {{baseUrl}}/api/users/me
+
+
+###
+GET {{baseUrl}}/api/auth/logout
 
 ###
 POST http://localhost:3000/api/pix
