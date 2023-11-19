@@ -16,13 +16,13 @@ export const metadata: Metadata = {
     { name: 'Filipe Nascimento', url: 'https://github.com/filipeflip' },
     { name: 'Renan Gabriel', url: 'https://github.com/renansilva15' },
   ],
-  openGraph: {
-    images: './og-image.webp',
-    type: 'website',
-    locale: 'pt_BR',
-    url: 'https://doeaqui.vercel.app/',
-    siteName: 'Doe Aqui',
-  },
+  // openGraph: {
+  //   images: './og-image.webp',
+  //   type: 'website',
+  //   locale: 'pt_BR',
+  //   url: 'https://doeaqui.vercel.app/',
+  //   siteName: 'Doe Aqui',
+  // },
 }
 
 export default function RootLayout({
