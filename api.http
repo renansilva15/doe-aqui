@@ -1,5 +1,4 @@
 @baseUrl = http://localhost:3000
-@authToken = eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyOWVkODRlZS00MmViLTRhZGYtYTBjYy1kMjVmNDgwZjdhNjEiLCJleHAiOjE2OTg1MTE1NzAsImlhdCI6MTY5ODUwNzk3MH0.dx3jujHUQV2LAddoimDY-uCX0tj2MMe9oeydgbSS5UA
 
 POST {{baseUrl}}/api/auth/register
 Content-Type: application/json
@@ -31,3 +30,17 @@ POST {{baseUrl}}/api/auth/logout
 
 ###
 POST http://localhost:3000/api/pix
+
+// ==================== CAMPAIGN ====================
+###
+GET {{baseUrl}}/api/campaign
+
+###
+POST {{baseUrl}}/api/campaign
+Content-Type: application/json
+
+{
+  "title": "Test campaign",
+  "description": "Something nice",
+  "pixKey": "asssdsdsdsd"
+}
