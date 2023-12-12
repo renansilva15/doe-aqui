@@ -11,7 +11,17 @@ import bg from './../../public/bg.webp'
 import Card from '@/components/Card/Card'
 import Overlay from '@/components/Overlay/Overlay'
 import { Navbar } from '@/components/navbar'
-import Chart from 'react-google-charts'
+import { CampaingCard } from '@/components/CampaingCard/CampaingCard'
+
+const data = {
+  title: 'Ajude Vader a recuperar a estrela da morte',
+  user: 'Darth Vader',
+  description:
+    'A galáxia precisa de sua ajuda AGORA para reconstruir a Estrela da Morte. Com sua contribuição, podemos trazer de volta a estação que mantinha a ordem.',
+  image: '/img-sample.jpg',
+  goal: 1000000,
+  raised: 590085,
+}
 
 export default function Home() {
   // const qrCodeData =
@@ -88,58 +98,38 @@ export default function Home() {
           Contribua para uma campanha
         </h1>
         <div className="flex flex-col md:grid md:grid-cols-3 w-full px-5 py-8 gap-4">
-          <div className="w-full flex flex-col relative bg-primary-50 shadow-custom rounded-xl overflow-hidden">
-            <div className="w-full flex relative">
-              <Image
-                src={'/img-sample.jpg'}
-                alt="card"
-                width={500}
-                height={500}
-                className="w-full h-auto"
-              />
-              <div className="bg-primary-500 py-2 px-4 text-white text-sm flex flex-col justify-start items-start absolute bottom-2 left-2 right-2">
-                <h4>Ajude Vader a reconstruir a estrela da morte</h4>
-                <span className="font-light text-[10px]">Darth Vader</span>
-              </div>
-            </div>
-            <p className="text-sm text-primary-500 p-3 text-center font-normal">
-              A galáxia precisa de sua ajuda AGORA para reconstruir a Estrela da
-              Morte. Com sua contribuição, podemos trazer de volta a estação que
-              mantinha a ordem.
-            </p>
-            <hr className="bg-primary-500 mx-2 h-0.5" />
-            <div className="grid grid-cols-2">
-              <div className="w-full flex flex-col items-center justify-center gap-2 text-primary-500 py-3">
-                <div className="flex flex-col">
-                  <h4 className="font-semibold">Arrecadado</h4>
-                  <h4>R$ 45.522,01</h4>
-                </div>
-                <div className="flex flex-col">
-                  <h4 className="font-semibold">Meta</h4>
-                  <h4>R$ 50.000,00</h4>
-                </div>
-              </div>
-
-              <div>
-                <Chart
-                  chartType="PieChart"
-                  width="100%"
-                  height="100%"
-                  data={[
-                    ['Meta', 'Arrecadado'],
-                    ['', 45.522],
-                    ['', 4.478],
-                  ]}
-                  options={{
-                    pieHole: 0.8,
-                    is3D: false,
-                    backgroundColor: 'transparent',
-                    colors: ['#23b4e7', 'red'],
-                  }}
-                />
-              </div>
-            </div>
-          </div>
+          <CampaingCard
+            title={data.title}
+            description={data.description}
+            image={data.image}
+            goal={data.goal}
+            raised={data.raised}
+            user={data.user}
+          />
+          <CampaingCard
+            title={data.title}
+            description={data.description}
+            image={data.image}
+            goal={data.goal}
+            raised={data.raised}
+            user={data.user}
+          />
+          <CampaingCard
+            title={data.title}
+            description={data.description}
+            image={data.image}
+            goal={data.goal}
+            raised={data.raised}
+            user={data.user}
+          />
+          <CampaingCard
+            title={data.title}
+            description={data.description}
+            image={data.image}
+            goal={data.goal}
+            raised={data.raised}
+            user={data.user}
+          />
         </div>
       </section>
 
