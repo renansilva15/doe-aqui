@@ -97,7 +97,7 @@ export default function Home() {
         <h1 className="text-3xl text-center font-semibold">
           Contribua para uma campanha
         </h1>
-        <div className="flex flex-col md:grid md:grid-cols-3 w-full px-5 py-8 gap-4">
+        <div className="flex flex-col md:grid md:grid-cols-3 w-full px-5 py-8 gap-4 mb-28">
           <CampaingCard
             title={data.title}
             description={data.description}
@@ -131,6 +131,52 @@ export default function Home() {
             user={data.user}
           />
         </div>
+      </section>
+
+      <section className="bg-primary-500 w-full flex flex-col items-center justify-center py-10 px-4 md:px-[12%] text-primary-50">
+        <div className="gap-6 flex flex-col items-center justify-center">
+          <h1 className="text-3xl text-center font-semibold">Fale Conosco</h1>
+          <p className="text-base text-center">
+            Estamos aqui para ouvir você! Entre em contato conosco para
+            esclarecer dúvidas, compartilhar sugestões ou relatar qualquer
+            problema. Sua opinião é importante para nós.
+          </p>
+        </div>
+        <form
+          action=""
+          className="w-full flex flex-col items-center justify-center px-4 py-4 md:px-[10%] lg:px-[16%] text-primary-50 gap-2"
+        >
+          <div className="flex flex-col items-start justify-start w-full">
+            <h3>Nome</h3>
+            <input
+              type="text"
+              placeholder='Ex: "João da Silva"'
+              className="h-12 w-full text-black rounded-lg bg-primary-50 focus:ring-1 focus:ring-primary-500 pl-1"
+            />
+          </div>
+          <div className="grid grid-cols-2 w-full gap-4">
+            <div className="flex flex-col items-start justify-start w-full">
+              <h3>Email</h3>
+              <input
+                type="email"
+                placeholder='Ex: "exemple@gmail.com"'
+                className="h-12 w-full text-black rounded-lg bg-primary-50 focus:ring-1 focus:ring-primary-500 pl-1"
+              />
+            </div>
+            <div className="flex flex-col items-start justify-start w-full">
+              <h3>Telefone</h3>
+              <input
+                type="tel"
+                placeholder='Ex: "(99) 99999-9999"'
+                className="h-12 w-full text-black rounded-lg bg-primary-50 focus:ring-1 focus:ring-primary-500 pl-1"
+              />
+            </div>
+          </div>
+          <div className="flex flex-col items-start justify-start w-full">
+            <h3>Mensagen</h3>
+            <textarea className="h-52 w-full text-black rounded-lg bg-primary-50 focus:ring-1 focus:ring-primary-500 pl-1" />
+          </div>
+        </form>
       </section>
 
       {/* <QRCodeComponent qrCodeData={qrCodeData} /> */}
