@@ -1,4 +1,17 @@
 import type { Config } from 'tailwindcss'
+import plugin from 'tailwindcss/plugin'
+
+const MyRotate = plugin(({ addUtilities }) => {
+  addUtilities({
+    ".flip-y": {
+      transform: "rotateY(180deg)",
+    },
+
+    ".preserve-3d": {
+      transformStyle: "preserve-3d",
+    },
+  })})
+
 
 const config: Config = {
   content: ['./src/components/**/*.{ts,tsx}', './src/app/**/*.{ts,tsx}'],
@@ -23,6 +36,6 @@ const config: Config = {
       custom: '4px 6px 4px 0px rgba(0, 0, 0, 0.25)',
     },
   },
-  plugins: [],
+  plugins: [MyRotate],
 }
 export default config

@@ -29,14 +29,17 @@ export default function Home() {
 
   return (
     <main className="w-full flex flex-col items-center justify-start relative">
-      <section className="w-full min-h-screen flex flex-col items-center justify-start relative">
+      <section
+        id="home"
+        className="w-full min-h-screen flex flex-col items-center justify-start relative"
+      >
         <Navbar.Root>
           <Navbar.Logo />
           <Navbar.Content>
-            <Navbar.Item title="Inicio" href="/" active={true} />
-            <Navbar.Item title="Campanhas" href="/" />
-            <Navbar.Item title="Contato" href="/" />
-            <Navbar.Item title="Sobre" href="/" />
+            <Navbar.Item title="Inicio" href="#home" active={true} />
+            <Navbar.Item title="Campanhas" href="#campaing" />
+            <Navbar.Item title="Contato" href="#contact" />
+            <Navbar.Item title="Sobre" href="#about" />
             <Navbar.Divider />
             <Navbar.Item title="Cadastre-se" href="/" />
             <Navbar.Item title="Entrar" href="/" />
@@ -93,7 +96,10 @@ export default function Home() {
         <h1 className="text-5xl font-semibold text-center">Utilizamos PIX</h1>
       </section>
 
-      <section className="w-full flex items-center justify-center flex-col flex-1 text-primary-500 bg-primary-50">
+      <section
+        id="campaing"
+        className="w-full flex items-center justify-center flex-col flex-1 text-primary-500 bg-primary-50"
+      >
         <h1 className="text-3xl text-center font-semibold">
           Contribua para uma campanha
         </h1>
@@ -133,7 +139,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-primary-500 w-full flex flex-col items-center justify-center py-10 px-4 md:px-[12%] text-primary-50">
+      <section
+        id="contact"
+        className="bg-primary-500 w-full flex flex-col items-center justify-center py-10 px-4 md:px-[12%] text-primary-50"
+      >
         <div className="gap-6 flex flex-col items-center justify-center">
           <h1 className="text-3xl text-center font-semibold">Fale Conosco</h1>
           <p className="text-base text-center">
@@ -176,7 +185,55 @@ export default function Home() {
             <h3>Mensagen</h3>
             <textarea className="h-52 w-full text-black rounded-lg bg-primary-50 focus:ring-1 focus:ring-primary-500 pl-1" />
           </div>
+          <div className="flex flex-col items-start justify-start w-full">
+            <button className="flex items-center justify-center gap-3 px-6 h-12 rounded-lg text-center bg-primary-50 w-full">
+              <span className="text-base text-primary-500 font-semibold">
+                Enviar
+              </span>
+            </button>
+          </div>
         </form>
+      </section>
+
+      <section
+        id="about"
+        className="w-full flex flex-col items-center justify-center py-10 px-4 md:px-[10%] lg:px-[16%] bg-primary-50 text-primary-500"
+      >
+        <div className="gap-6 flex flex-col items-center justify-center">
+          <h1 className="text-3xl text-center font-semibold">Sobre Nós</h1>
+          <p className="text-base text-center">
+            O 'Doe Aqui' é uma instituição sem fins lucrativos dedicada a unir
+            quem precisa com quem pode ajudar. Junte-se a nós e faça parte deste
+            movimento inspirador.
+          </p>
+        </div>
+      </section>
+
+      <section
+        id="about"
+        className="w-full flex flex-col items-center justify-center py-10 px-4 md:px-[10%] lg:px-[16%] bg-primary-50 text-primary-500"
+      >
+        <div className="gap-6 flex flex-col items-center justify-center">
+          <h1 className="text-3xl text-center font-semibold">Equipe</h1>
+        </div>
+
+        <div className="flex w-full px-5 py-8 gap-4 mb-28">
+          <div className="relative flex flex-col h-60 group">
+            <div className="flex flex-col items-end justify-end relative min-w-[280px] min-h-[320px] h-full group-hover:flip-y preserve-3d duration-500 transition-all rounded-lg overflow-hidden border-4 border-primary-900">
+              <Image
+                src="/dick.png"
+                alt="bg"
+                fill
+                objectFit="cover"
+                className="absolute"
+              />
+              <div className="w-full flex justify-evenly items-center bg-primary-900 py-4 z-10">
+                <span>LD</span>
+                <span>GH</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* <QRCodeComponent qrCodeData={qrCodeData} /> */}
