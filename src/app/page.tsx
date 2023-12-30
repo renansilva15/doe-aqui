@@ -218,18 +218,13 @@ export default function Home() {
         </div>
 
         <div className="flex w-full px-5 py-8 gap-4 mb-28">
-          <div className="relative flex flex-col h-60 group">
-            <div className="flex flex-col items-end justify-end relative min-w-[280px] min-h-[320px] h-full group-hover:flip-y preserve-3d duration-500 transition-all rounded-lg overflow-hidden border-4 border-primary-900">
-              <Image
-                src="/dick.png"
-                alt="bg"
-                fill
-                objectFit="cover"
-                className="absolute"
-              />
-              <div className="w-full flex justify-evenly items-center bg-primary-900 py-4 z-10">
-                <span>LD</span>
-                <span>GH</span>
+          <div className="w-[280px] h-[320px] bg-transparent cursor-pointer group perspective">
+            <div className="relative preserve-3d group-hover:flip-y w-full h-full duration-500">
+              <div className="absolute backface-hidden w-full h-full rounded-lg overflow-hidden">
+                <img src="/dick.png" className="w-full h-full object-cover" />
+              </div>
+              <div className="absolute flip-y backface-hidden w-full h-full bg-primary-900  rounded-lg overflow-hidden">
+                1, 2, 3... testando...
               </div>
             </div>
           </div>

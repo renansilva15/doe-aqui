@@ -10,6 +10,14 @@ const MyRotate = plugin(({ addUtilities }) => {
     ".preserve-3d": {
       transformStyle: "preserve-3d",
     },
+
+    ".perspective": {
+      perspective: "500px",
+    },
+
+    ".backface-hidden": {
+      backfaceVisibility: "hidden",
+    },
   })})
 
 
