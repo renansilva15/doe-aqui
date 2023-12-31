@@ -203,9 +203,9 @@ export default function Home() {
         <div className="gap-6 flex flex-col items-center justify-center">
           <h1 className="text-3xl text-center font-semibold">Sobre Nós</h1>
           <p className="text-base text-center">
-            O 'Doe Aqui' é uma instituição sem fins lucrativos dedicada a unir
-            quem precisa com quem pode ajudar. Junte-se a nós e faça parte deste
-            movimento inspirador.
+            O &apos;Doe Aqui&apos; é uma instituição sem fins lucrativos
+            dedicada a unir quem precisa com quem pode ajudar. Junte-se a nós e
+            faça parte deste movimento inspirador.
           </p>
         </div>
       </section>
