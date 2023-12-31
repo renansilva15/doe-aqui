@@ -8,7 +8,12 @@ interface NavbarItemProps {
 
 export const NavbarItem = ({ title, href, active }: NavbarItemProps) => {
   return (
-    <Link href={href} className={`${active && 'underline'}`}>
+    <Link
+      href={href}
+      className={`${
+        active && 'underline'
+      } transition-all duration-200 hover:text-primary-200`}
+    >
       {title}
     </Link>
   )
