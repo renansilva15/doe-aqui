@@ -12,6 +12,7 @@ import Card from '@/components/Card/Card'
 import Overlay from '@/components/Overlay/Overlay'
 import { Navbar } from '@/components/navbar'
 import { CampaingCard } from '@/components/CampaingCard/CampaingCard'
+import { TeamCard } from '@/components/TeamCard/TeamCard'
 
 const data = {
   title: 'Ajude Vader a recuperar a estrela da morte',
@@ -217,21 +218,32 @@ export default function Home() {
           <h1 className="text-3xl text-center font-semibold">Equipe</h1>
         </div>
 
-        <div className="flex w-full px-5 py-8 gap-4 mb-28">
-          <div className="w-[280px] h-[320px] bg-transparent cursor-pointer group perspective">
-            <div className="relative preserve-3d group-hover:flip-y w-full h-full duration-500">
-              <div className="absolute backface-hidden w-full h-full rounded-lg overflow-hidden">
-                <img src="/dick.png" className="w-full h-full object-cover" />
-              </div>
-              <div className="absolute flip-y backface-hidden w-full h-full bg-primary-900  rounded-lg overflow-hidden">
-                1, 2, 3... testando...
-              </div>
-            </div>
-          </div>
+        <div className="flex flex-wrap items-center justify-center w-full px-5 py-8 gap-4 mb-28">
+          <TeamCard
+            name="Dick Vigarista"
+            image="/dick.png"
+            linkedin="/"
+            github="/"
+          />
+
+          <TeamCard
+            name="Dick Vigarista"
+            image="/dick.png"
+            linkedin="/"
+            github="/"
+          />
+
+          <TeamCard
+            name="Dick Vigarista"
+            image="/dick.png"
+            linkedin="/"
+            github="/"
+          />
         </div>
       </section>
 
       {/* <QRCodeComponent qrCodeData={qrCodeData} /> */}
+      <footer className="bg-primary-500 w-full p-6"></footer>
     </main>
   )
 }
