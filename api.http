@@ -40,7 +40,10 @@ POST {{baseUrl}}/api/campaign
 Content-Type: application/json
 
 {
-  "title": "Test campaign",
+  "title": "Test campaign sala",
   "description": "Something nice",
   "pixKey": "asssdsdsdsd"
 }
+
+###
+DELETE {{baseUrl}}/api/campaign/cb460a08-5f2f-46ac-b73d-21d8769ad9c1
