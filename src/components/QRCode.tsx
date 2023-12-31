@@ -2,7 +2,7 @@
 'use client'
 import QRCode from 'qrcode.react'
 
-const QRCodeComponent = ({ qrCodeData }) => {
+const QRCodeComponent = ({ qrCodeData }: any) => {
   return (
     <div>
       <QRCode value={qrCodeData} />

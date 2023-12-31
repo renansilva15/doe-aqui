@@ -78,6 +78,6 @@ export const config = {
     '/login',
     '/api/users/:path*',
     '/api/auth/logout',
-    '/api/campaign',
+    '/api/campaign/:path*',
   ],
 }

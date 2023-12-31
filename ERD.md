@@ -26,8 +26,8 @@ erDiagram
     Decimal total_raised
     String pix_key
 }
-"Image" }|--|| "Campaign" : campaign
-"Campaign" }|--|| "User" : user
+"Image" }o--|| "Campaign" : campaign
+"Campaign" }o--|| "User" : user
 ```
 
 ### `User`
