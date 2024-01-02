@@ -18,6 +18,14 @@ export async function DELETE(
   const { id } = params
 
   try {
+    const hasCampaign = await prisma.campaign.findUnique({
+      where: { id, userId },
+    })
+
+    if (!hasCampaign) {
+      return getErrorResponse(404, 'Campaign not found')
+    }
+
     const deletedCampaign = await prisma.campaign.delete({
       where: { id, userId },
     })
