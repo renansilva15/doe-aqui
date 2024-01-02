@@ -1,17 +1,17 @@
 @baseUrl = http://localhost:3000
 
+### Register User
 POST {{baseUrl}}/api/auth/register
 Content-Type: application/json
 
 {
   "name": "Example",
   "email": "example@example.com",
-  "password": "password123",
-  "passwordConfirm": "password123"
+  "password": "password123"
 }
 
 
-###
+### Login
 POST {{baseUrl}}/api/auth/login
 Content-Type: application/json
 
@@ -21,21 +21,20 @@ Content-Type: application/json
 }
 
 
-###
+### Current User
 GET {{baseUrl}}/api/users/me
 
 
-###
+### Logout
 POST {{baseUrl}}/api/auth/logout
 
-###
+### Pix
 POST http://localhost:3000/api/pix
 
-// ==================== CAMPAIGN ====================
-###
+### Fetch Campaigns
 GET {{baseUrl}}/api/campaign
 
-###
+### Register Campaign
 POST {{baseUrl}}/api/campaign
 Content-Type: application/json
 
@@ -45,5 +44,17 @@ Content-Type: application/json
   "pixKey": "asssdsdsdsd"
 }
 
-###
+### Delete Campaign
 DELETE {{baseUrl}}/api/campaign/cb460a08-5f2f-46ac-b73d-21d8769ad9c1
+
+### Update Campaign
+PUT  {{baseUrl}}/api/campaign/c6f18d86-666c-4daa-9eae-62e8e8309cbf
+Content-Type: application/json
+
+{
+  "title": "Test campaign sala",
+  "description": "Something nice",
+  "goal": 55.34,
+  "totalRaised": 25.40,
+  "pixKey": "asssdsdsdsd"
+}

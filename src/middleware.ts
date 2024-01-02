@@ -53,7 +53,7 @@ export async function middleware(req: NextRequest) {
 
   const authUser = (req as AuthenticatedRequest).user
 
-  if (!authUser) {
+  if (!authUser && !req.nextUrl.pathname.startsWith('/api/campaign')) {
     return NextResponse.redirect(
       new URL(
         `/login?${new URLSearchParams({
