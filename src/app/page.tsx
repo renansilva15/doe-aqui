@@ -220,24 +220,24 @@ export default function Home() {
 
         <div className="flex flex-wrap items-center justify-center w-full px-5 py-8 gap-4 mb-28">
           <TeamCard
-            name="Dick Vigarista"
-            image="/dick.png"
-            linkedin="/"
-            github="/"
+            name="Bruno Wanderson"
+            image="/member-1.png"
+            linkedin="https://www.linkedin.com/in/bruno-wanderson/"
+            github="https://github.com/brunowanderson7"
           />
 
           <TeamCard
-            name="Dick Vigarista"
-            image="/dick.png"
-            linkedin="/"
-            github="/"
+            name="Filipe Nascimento"
+            image="/member-2.png"
+            linkedin="https://www.linkedin.com/in/filipesnascimento/"
+            github="https://github.com/FilipeFlip"
           />
 
           <TeamCard
-            name="Dick Vigarista"
-            image="/dick.png"
-            linkedin="/"
-            github="/"
+            name="Renan Gabriel"
+            image="/member-3.png"
+            linkedin="https://www.linkedin.com/in/renansilva15/"
+            github="https://github.com/renansilva15"
           />
         </div>
       </section>

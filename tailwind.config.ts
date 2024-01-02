@@ -18,7 +18,8 @@ const MyRotate = plugin(({ addUtilities }) => {
     ".backface-hidden": {
       backfaceVisibility: "hidden",
     },
-  })})
+  })
+})
 
 
 const config: Config = {

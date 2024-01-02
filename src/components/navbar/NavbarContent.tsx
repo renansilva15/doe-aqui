@@ -1,7 +1,7 @@
 'use client'
 
 import React, { ReactNode, useEffect, useState } from 'react'
-import { IoClose, IoExit, IoMenu } from 'react-icons/io5'
+import { IoClose, IoMenu } from 'react-icons/io5'
 
 interface NavbarContentProps {
   children: ReactNode
@@ -20,8 +20,6 @@ export const NavbarContent = ({ children }: NavbarContentProps) => {
     }
 
     window.addEventListener('resize', handleResize)
-
-    // Verificação inicial
     handleResize()
 
     return () => {
@@ -32,7 +30,7 @@ export const NavbarContent = ({ children }: NavbarContentProps) => {
   return (
     <div
       onClick={() => setIsMobile(!isMobile)}
-      className="flex flex-col items-end md:flex md:flex-row md:items-center md:justify-center gap-1 font-semibold text-base text-primary-50 md:gap-3"
+      className="flex flex-col items-end md:flex md:flex-row md:items-center md:justify-center gap-1 font-semibold text-base text-primary-50 md:gap-3 transition-all duration-300 ease-in-out"
     >
       {isMobile ? (
         <IoMenu
