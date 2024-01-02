@@ -7,8 +7,7 @@ Content-Type: application/json
 {
   "name": "Example",
   "email": "example@example.com",
-  "password": "password123",
-  "passwordConfirm": "password123"
+  "password": "password123"
 }
 
 
@@ -47,3 +46,15 @@ Content-Type: application/json
 
 ### Delete Campaign
 DELETE {{baseUrl}}/api/campaign/cb460a08-5f2f-46ac-b73d-21d8769ad9c1
+
+### Update Campaign
+PUT  {{baseUrl}}/api/campaign/c6f18d86-666c-4daa-9eae-62e8e8309cbf
+Content-Type: application/json
+
+{
+  "title": "Test campaign sala",
+  "description": "Something nice",
+  "goal": 55.34,
+  "totalRaised": 25.40,
+  "pixKey": "asssdsdsdsd"
+}
