@@ -18,13 +18,14 @@ type Props = {
 }
 
 export const CardRender = () => {
+  const url = process.env.NEXT_PUBLIC_BASE_URL
   const [data, setData] = useState<Props['data']>({
     campaigns: [],
   })
 
   useEffect(() => {
     async function getCampaings() {
-      const res = await fetch('http://localhost:3000/api/campaign')
+      const res = await fetch(`${url}/api/campaign`)
       const jsonData = await res.json()
 
       console.log(jsonData.data)
