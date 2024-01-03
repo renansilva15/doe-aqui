@@ -11,8 +11,8 @@ import bg from './../../public/bg.webp'
 import Card from '@/components/Card/Card'
 import Overlay from '@/components/Overlay/Overlay'
 import { Navbar } from '@/components/navbar'
-import { CampaingCard } from '@/components/CampaingCard/CampaingCard'
 import { TeamCard } from '@/components/TeamCard/TeamCard'
+import CardRender from '@/components/CardRender/CardRender'
 
 const data = {
   title: 'Ajude Vader a recuperar a estrela da morte',
@@ -27,6 +27,13 @@ const data = {
 export default function Home() {
   // const qrCodeData =
   //   '00020126360014BR.GOV.BCB.PIX0114+558999430173852040000530398654040.105802BR5904null6004null62440506ASD12350300017BR.GOV.BCB.BRCODE01051.0.06304A476'
+
+  async function test() {
+    let data = await fetch('http://localhost:3000/api/campaign')
+    let json = await data.json()
+
+    console.log(json.data)
+  }
 
   return (
     <main className="w-full flex flex-col items-center justify-start relative">
@@ -60,7 +67,10 @@ export default function Home() {
           <h1 className="text-3xl text-center font-semibold text-primary-50">
             Dê vida à sua causa <br /> Comece sua campanha hoje mesmo!
           </h1>
-          <button className="flex items-center justify-center gap-3 px-6 py-4 rounded-lg text-center bg-primary-500">
+          <button
+            onClick={test}
+            className="flex items-center justify-center gap-3 px-6 py-4 rounded-lg text-center bg-primary-500"
+          >
             <FaHeart className="text-2xl text-primary-50" />
             <span className="text-base text-primary-50 font-semibold">
               Criar minha campanha
@@ -104,7 +114,8 @@ export default function Home() {
         <h1 className="text-3xl text-center font-semibold">
           Contribua para uma campanha
         </h1>
-        <div className="flex flex-col md:grid md:grid-cols-3 w-full px-5 py-8 gap-4 mb-28">
+        <CardRender />
+        {/* <div className="flex flex-col md:grid md:grid-cols-3 w-full px-5 py-8 gap-4 mb-28">
           <CampaingCard
             title={data.title}
             description={data.description}
@@ -137,7 +148,7 @@ export default function Home() {
             raised={data.raised}
             user={data.user}
           />
-        </div>
+        </div> */}
       </section>
 
       <section

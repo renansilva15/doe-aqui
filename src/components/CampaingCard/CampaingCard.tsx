@@ -8,6 +8,8 @@ interface CampaingCardProps {
   image: string
   goal: number
   raised: number
+
+  pixKey: string
 }
 
 export const CampaingCard = ({
@@ -17,9 +19,10 @@ export const CampaingCard = ({
   goal,
   raised,
   user,
+  pixKey,
 }: CampaingCardProps) => {
   return (
-    <div className="w-full flex flex-col relative bg-primary-50 shadow-custom rounded-xl overflow-hidden">
+    <div className="w-full flex flex-col relative bg-primary-50 shadow-custom rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition-all duration-200">
       <div className="w-full flex relative">
         <Image
           src={image || '/img-sample.jpg'}
@@ -38,7 +41,7 @@ export const CampaingCard = ({
       </p>
       <hr className="bg-primary-500 mx-2 h-0.5" />
       <div className="grid grid-cols-2">
-        <div className="w-full flex flex-col items-center justify-center gap-2 text-primary-500 py-3">
+        <div className="w-full flex flex-col items-start justify-center gap-2 text-primary-500 py-3 pl-4">
           <div className="flex flex-col">
             <h4 className="font-semibold">Arrecadado</h4>
             <h4>R$ {raised}</h4>

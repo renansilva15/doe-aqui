@@ -1,6 +1,8 @@
 'use client'
 
+import { use, useEffect, useState } from 'react'
 import Chart from 'react-google-charts'
+import { set } from 'zod'
 
 interface PieChartProps {
   goal: number
@@ -8,7 +10,20 @@ interface PieChartProps {
 }
 
 export const PieChart = ({ goal, raised }: PieChartProps) => {
+  const [dataRaised, setDataRaised] = useState(raised)
+  const [dataGoal, setDataGoal] = useState(goal - raised)
+
+  useEffect(() => {
+    if (goal === 0) {
+      setDataRaised(100)
+      setDataGoal(0)
+    }
+  }, [])
+
   function percent() {
+    if (goal === 0) return 100
+    if (raised === goal) return 100
+
     return ((raised / goal) * 100).toFixed(0)
   }
 
@@ -20,8 +35,8 @@ export const PieChart = ({ goal, raised }: PieChartProps) => {
         height="100%"
         data={[
           ['Meta', 'Arrecadado'],
-          ['', raised],
-          ['', goal - raised],
+          ['', dataRaised],
+          ['', dataGoal],
         ]}
         options={{
           pieHole: 0.8,
@@ -32,7 +47,7 @@ export const PieChart = ({ goal, raised }: PieChartProps) => {
         }}
       />
 
-      <h2 className="text-2xl text-primary-500 absolute text-center ">
+      <h2 className="text-xl text-primary-500 absolute text-center mt-1 ml-1">
         {percent()}%
       </h2>
     </div>
