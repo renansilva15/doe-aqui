@@ -45,7 +45,7 @@ export const CardRender = () => {
           goal={parseFloat(item.goal)}
           raised={parseFloat(item.totalRaised)}
           pixKey={item.pixKey}
-          image="/img-sample.jpg"
+          image="/img-sample.png"
         />
       ))}
     </div>
