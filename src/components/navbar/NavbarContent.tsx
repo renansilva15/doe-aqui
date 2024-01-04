@@ -29,7 +29,7 @@ export const NavbarContent = ({ children }: NavbarContentProps) => {
 
   return (
     <div
-      onClick={() => setIsMobile(!isMobile)}
+      // onClick={() => setIsMobile(!isMobile)}
       className="flex flex-col items-end md:flex md:flex-row md:items-center md:justify-center gap-1 font-semibold text-base text-primary-50 md:gap-3 transition-all duration-300 ease-in-out"
     >
       {isMobile ? (
