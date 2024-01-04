@@ -14,27 +14,11 @@ import { Navbar } from '@/components/navbar'
 import { TeamCard } from '@/components/TeamCard/TeamCard'
 import CardRender from '@/components/CardRender/CardRender'
 import Button from '@/components/Button/Button'
-
-const data = {
-  title: 'Ajude Vader a recuperar a estrela da morte',
-  user: 'Darth Vader',
-  description:
-    'A galáxia precisa de sua ajuda AGORA para reconstruir a Estrela da Morte. Com sua contribuição, podemos trazer de volta a estação que mantinha a ordem.',
-  image: '/img-sample.jpg',
-  goal: 1000000,
-  raised: 590085,
-}
+import FormRender from '@/components/FormRender/FormRender'
 
 export default function Home() {
   // const qrCodeData =
   //   '00020126360014BR.GOV.BCB.PIX0114+558999430173852040000530398654040.105802BR5904null6004null62440506ASD12350300017BR.GOV.BCB.BRCODE01051.0.06304A476'
-
-  async function test() {
-    const data = await fetch('http://localhost:3000/api/campaign')
-    const json = await data.json()
-
-    console.log(json.data)
-  }
 
   return (
     <main className="w-full flex flex-col items-center justify-start relative">
@@ -110,40 +94,6 @@ export default function Home() {
           Contribua para uma campanha
         </h1>
         <CardRender />
-        {/* <div className="flex flex-col md:grid md:grid-cols-3 w-full px-5 py-8 gap-4 mb-28">
-          <CampaingCard
-            title={data.title}
-            description={data.description}
-            image={data.image}
-            goal={data.goal}
-            raised={data.raised}
-            user={data.user}
-          />
-          <CampaingCard
-            title={data.title}
-            description={data.description}
-            image={data.image}
-            goal={data.goal}
-            raised={data.raised}
-            user={data.user}
-          />
-          <CampaingCard
-            title={data.title}
-            description={data.description}
-            image={data.image}
-            goal={data.goal}
-            raised={data.raised}
-            user={data.user}
-          />
-          <CampaingCard
-            title={data.title}
-            description={data.description}
-            image={data.image}
-            goal={data.goal}
-            raised={data.raised}
-            user={data.user}
-          />
-        </div> */}
       </section>
 
       <section
@@ -158,44 +108,7 @@ export default function Home() {
             problema. Sua opinião é importante para nós.
           </p>
         </div>
-        <form
-          action=""
-          className="w-full flex flex-col items-center justify-center px-4 py-4 md:px-[10%] lg:px-[16%] text-primary-50 gap-2"
-        >
-          <div className="flex flex-col items-start justify-start w-full">
-            <h3>Nome</h3>
-            <input
-              type="text"
-              placeholder='Ex: "João da Silva"'
-              className="h-12 w-full text-black rounded-lg bg-primary-50 focus:ring-1 focus:ring-primary-500 pl-1"
-            />
-          </div>
-          <div className="grid grid-cols-2 w-full gap-4">
-            <div className="flex flex-col items-start justify-start w-full">
-              <h3>Email</h3>
-              <input
-                type="email"
-                placeholder='Ex: "exemple@gmail.com"'
-                className="h-12 w-full text-black rounded-lg bg-primary-50 focus:ring-1 focus:ring-primary-500 pl-1"
-              />
-            </div>
-            <div className="flex flex-col items-start justify-start w-full">
-              <h3>Telefone</h3>
-              <input
-                type="tel"
-                placeholder='Ex: "(99) 99999-9999"'
-                className="h-12 w-full text-black rounded-lg bg-primary-50 focus:ring-1 focus:ring-primary-500 pl-1"
-              />
-            </div>
-          </div>
-          <div className="flex flex-col items-start justify-start w-full">
-            <h3>Mensagen</h3>
-            <textarea className="h-52 w-full text-black rounded-lg bg-primary-50 focus:ring-1 focus:ring-primary-500 pl-1" />
-          </div>
-          <div className="flex flex-col items-start justify-start w-full">
-            <Button width="MAX" style="SECONDARY" title="Enviar"></Button>
-          </div>
-        </form>
+        <FormRender />
       </section>
 
       <section

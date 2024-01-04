@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-type ButtonStyle = 'PRIMARY' | 'SECONDARY'
+type ButtonStyle = 'PRIMARY' | 'SECONDARY' | 'OUTLINED'
 type ButtonWidth = 'AUTO' | 'MAX'
 
 interface ButtonProps {
@@ -24,7 +24,9 @@ export const Button = ({
       className={`${
         style === 'PRIMARY'
           ? 'bg-primary-500 text-primary-50'
-          : 'bg-primary-50 text-primary-500'
+          : style === 'SECONDARY'
+          ? 'bg-primary-50 text-primary-500'
+          : 'bg-transparent text-primary-50 border-primary-50 border-2'
       } 
       ${
         width === 'MAX' ? 'w-full' : ' px-6'
