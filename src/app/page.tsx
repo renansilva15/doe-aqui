@@ -13,6 +13,7 @@ import Overlay from '@/components/Overlay/Overlay'
 import { Navbar } from '@/components/navbar'
 import { TeamCard } from '@/components/TeamCard/TeamCard'
 import CardRender from '@/components/CardRender/CardRender'
+import Button from '@/components/Button/Button'
 
 const data = {
   title: 'Ajude Vader a recuperar a estrela da morte',
@@ -67,15 +68,9 @@ export default function Home() {
           <h1 className="text-3xl text-center font-semibold text-primary-50">
             Dê vida à sua causa <br /> Comece sua campanha hoje mesmo!
           </h1>
-          <button
-            onClick={test}
-            className="flex items-center justify-center gap-3 px-6 py-4 rounded-lg text-center bg-primary-500"
-          >
-            <FaHeart className="text-2xl text-primary-50" />
-            <span className="text-base text-primary-50 font-semibold">
-              Criar minha campanha
-            </span>
-          </button>
+          <Button title="Criar minha campanha" style="PRIMARY" width="AUTO">
+            <FaHeart className="text-2xl my-1" />
+          </Button>
         </div>
       </section>
 
@@ -198,11 +193,7 @@ export default function Home() {
             <textarea className="h-52 w-full text-black rounded-lg bg-primary-50 focus:ring-1 focus:ring-primary-500 pl-1" />
           </div>
           <div className="flex flex-col items-start justify-start w-full">
-            <button className="flex items-center justify-center gap-3 px-6 h-12 rounded-lg text-center bg-primary-50 w-full">
-              <span className="text-base text-primary-500 font-semibold">
-                Enviar
-              </span>
-            </button>
+            <Button width="MAX" style="SECONDARY" title="Enviar"></Button>
           </div>
         </form>
       </section>
