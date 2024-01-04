@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
   }
 }
 
-export async function generateTxId() {
+async function generateTxId() {
   const pixes = await prisma.pix.findMany()
 
   const lastTxId = pixes.reduce((max, pix) => {
