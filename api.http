@@ -28,7 +28,7 @@ GET {{baseUrl}}/api/users/me
 ### Logout
 POST {{baseUrl}}/api/auth/logout
 
-### Pix
+### PIX
 POST http://localhost:3000/api/pix
 Content-Type: application/json
 
@@ -36,6 +36,9 @@ Content-Type: application/json
   "campaignId": "9b368618-1218-4e1f-84f3-a3e47902138c",
   "amount": 0.03
 }
+
+### Process Transaction
+POST http://localhost:3000/api/pix/process-transaction/0000
 
 ### Fetch Campaigns
 GET {{baseUrl}}/api/campaign
