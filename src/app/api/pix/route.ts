@@ -1,15 +1,24 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
+import { getRandomNumbers } from '@/lib/get-random-numbers'
 import { pix } from '@klawdyo/pix.js'
+import { NextRequest, NextResponse } from 'next/server'
 
-export async function POST() {
+export async function POST(req: NextRequest) {
+  const body = await req.json()
+  const { pixKey, amount } = body
+
   const code = pix({
-    key: '+5589994301738',
+    key: pixKey,
     // name: '',
     // city: 'coco',
-    txId: 'ASD123',
-    amount: 0.1,
+    txId: getRandomNumbers(4).join(''),
+    amount,
   })
 
-  return Response.json(code)
+  const data = {
+    pixCode: code,
+  }
+
+  return NextResponse.json({
+    data,
+  })
 }
