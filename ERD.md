@@ -26,6 +26,12 @@ erDiagram
     Decimal total_raised
     String pix_key
 }
+"Pix" {
+    String campaign_id
+    String tx_id UK
+    Decimal amount
+    DateTime created_at
+}
 "Image" }o--|| "Campaign" : campaign
 "Campaign" }o--|| "User" : user
 ```
@@ -55,3 +61,11 @@ erDiagram
   - `goal`: 
   - `total_raised`: 
   - `pix_key`: 
+
+### `Pix`
+
+**Properties**
+  - `campaign_id`: 
+  - `tx_id`: 
+  - `amount`: 
+  - `created_at`: 
