@@ -29,8 +29,8 @@ export default function Home() {
   //   '00020126360014BR.GOV.BCB.PIX0114+558999430173852040000530398654040.105802BR5904null6004null62440506ASD12350300017BR.GOV.BCB.BRCODE01051.0.06304A476'
 
   async function test() {
-    let data = await fetch('http://localhost:3000/api/campaign')
-    let json = await data.json()
+    const data = await fetch('http://localhost:3000/api/campaign')
+    const json = await data.json()
 
     console.log(json.data)
   }
