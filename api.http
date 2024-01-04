@@ -30,6 +30,12 @@ POST {{baseUrl}}/api/auth/logout
 
 ### Pix
 POST http://localhost:3000/api/pix
+Content-Type: application/json
+
+{
+  "pixKey": "natan11gamer@gmail.com",
+  "amount": 0.03
+}
 
 ### Fetch Campaigns
 GET {{baseUrl}}/api/campaign
