@@ -40,7 +40,6 @@ export async function POST(
 
     return NextResponse.json({
       status: 'sucess',
-      message: 'Transaction completed',
     })
   } catch (error) {
     console.log(error)

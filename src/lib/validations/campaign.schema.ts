@@ -16,6 +16,8 @@ export const RegisterCampaignSchema = z.object({
       required_error: 'Pix Key is required',
     })
     .min(1, 'Pix Key must not be empty'),
+
+  imageUrl: z.string().nullable().optional(),
   goal: z.number().min(0, 'Goal must be a positive number').optional(),
 })
 
@@ -30,11 +32,6 @@ export const UpdateCampaignSchema = z.object({
       required_error: 'Description is required',
     })
     .min(1, 'Description must not be empty'),
-  goal: z
-    .number({
-      required_error: 'Goal is required',
-    })
-    .min(0, 'Goal must be a positive number'),
   totalRaised: z
     .number({
       required_error: 'Total Raised is required',
@@ -45,6 +42,8 @@ export const UpdateCampaignSchema = z.object({
       required_error: 'Pix Key is required',
     })
     .min(1, 'Pix Key must not be empty'),
+  imageUrl: z.string().nullable(),
+  goal: z.number().min(0, 'Goal must be a positive number'),
 })
 
 export type RegisterCampaignInput = z.infer<typeof RegisterCampaignSchema>

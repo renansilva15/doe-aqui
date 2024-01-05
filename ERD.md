@@ -17,7 +17,11 @@ erDiagram
     String user_id FK
     String title
     String description
+<<<<<<< HEAD
     String imageUrl
+=======
+    String imageUrl "nullable"
+>>>>>>> 57deacc (refactor: remove image model and add imageUrl to routes)
     Decimal goal
     Decimal total_raised
     String pix_key

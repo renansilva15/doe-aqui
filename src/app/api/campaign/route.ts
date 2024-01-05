@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = (await req.json()) as RegisterCampaignInput
-    const { title, description, pixKey, goal } =
+    const { title, description, pixKey, imageUrl, goal } =
       RegisterCampaignSchema.parse(body)
 
     const campaign = await prisma.campaign.create({
@@ -60,8 +60,9 @@ export async function POST(req: NextRequest) {
         userId,
         title,
         description,
-        pixKey,
+        imageUrl,
         goal,
+        pixKey,
       },
     })
 

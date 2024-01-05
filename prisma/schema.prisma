@@ -32,7 +32,11 @@ model Campaign {
 
   title       String
   description String
+<<<<<<< HEAD
   imageUrl    String
+=======
+  imageUrl    String?
+>>>>>>> 57deacc (refactor: remove image model and add imageUrl to routes)
   goal        Decimal @default(0)
   totalRaised Decimal @default(0) @map("total_raised")
 

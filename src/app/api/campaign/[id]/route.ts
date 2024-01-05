@@ -64,11 +64,11 @@ export async function PUT(
   try {
     const body = (await req.json()) as UpdateCampaignInput
 
-    const { title, description, goal, totalRaised, pixKey } =
+    const { title, description, goal, totalRaised, imageUrl, pixKey } =
       UpdateCampaignSchema.parse(body)
 
     const campaign = await prisma.campaign.findUnique({
-      where: { id, userId },
+      where: { id },
     })
 
     if (!campaign) {
@@ -85,6 +85,7 @@ export async function PUT(
       data: {
         title,
         description,
+        imageUrl,
         goal,
         totalRaised,
         pixKey,
@@ -96,7 +97,6 @@ export async function PUT(
 
     return NextResponse.json({
       status: 'success',
-      data: { campaign },
     })
   } catch (error) {
     console.log(error)
