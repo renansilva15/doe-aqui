@@ -5,41 +5,39 @@ import {
   RegisterCampaignSchema,
 } from '@/lib/validations/campaign.schema'
 import { NextRequest, NextResponse } from 'next/server'
+import { ZodError } from 'zod'
 
-export async function GET(req: NextRequest) {
-  // const userId = req.headers.get('X-USER-ID')
+export async function GET() {
+  try {
+    const campaigns = await prisma.campaign.findMany()
 
-  // if (!userId) {
-  //   return getErrorResponse(
-  //     401,
-  //     'You are not logged in, please provide token to gain access',
-  //   )
-  // }
+    const processedCampaigns = await Promise.all(
+      campaigns.map(async (campaign) => {
+        const { userId, ...processedCampaign } = campaign
 
-  const campaigns = await prisma.campaign.findMany()
+        const username = await prisma.user.findUnique({
+          where: {
+            id: userId,
+          },
 
-  const processedCampaigns = await Promise.all(
-    campaigns.map(async (campaign) => {
-      const { userId, ...processedCampaign } = campaign
+          select: {
+            name: true,
+          },
+        })
 
-      const username = await prisma.user.findUnique({
-        where: {
-          id: userId,
-        },
+        return { username: username?.name, ...processedCampaign }
+      }),
+    )
 
-        select: {
-          name: true,
-        },
-      })
+    return NextResponse.json({
+      status: 'success',
+      data: { campaigns: processedCampaigns },
+    })
+  } catch (error) {
+    console.log(error)
 
-      return { username: username?.name, ...processedCampaign }
-    }),
-  )
-
-  return NextResponse.json({
-    status: 'success',
-    data: { campaigns: processedCampaigns },
-  })
+    return getErrorResponse()
+  }
 }
 
 export async function POST(req: NextRequest) {
@@ -52,27 +50,38 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  const body = (await req.json()) as RegisterCampaignInput
-  const { title, description, pixKey } = RegisterCampaignSchema.parse(body)
+  try {
+    const body = (await req.json()) as RegisterCampaignInput
+    const { title, description, pixKey, goal } =
+      RegisterCampaignSchema.parse(body)
 
-  if (!title || !description || !pixKey) {
-    return NextResponse.json({
-      status: 'fail',
-      data: {},
+    const campaign = await prisma.campaign.create({
+      data: {
+        userId,
+        title,
+        description,
+        pixKey,
+        goal,
+      },
     })
+
+    return new NextResponse(
+      JSON.stringify({
+        status: 'success',
+        data: { campaign },
+      }),
+      {
+        status: 201,
+        headers: { 'Content-Type': 'application/json' },
+      },
+    )
+  } catch (error) {
+    console.log(error)
+
+    if (error instanceof ZodError) {
+      return getErrorResponse(400, 'failed validations', error)
+    }
+
+    return getErrorResponse()
   }
-
-  const campaign = await prisma.campaign.create({
-    data: {
-      userId,
-      title,
-      description,
-      pixKey,
-    },
-  })
-
-  return NextResponse.json({
-    status: 'success',
-    data: { campaign },
-  })
 }

@@ -5,6 +5,7 @@ import {
   UpdateCampaignSchema,
 } from '@/lib/validations/campaign.schema'
 import { NextRequest, NextResponse } from 'next/server'
+import { ZodError } from 'zod'
 
 export async function DELETE(
   req: NextRequest,
@@ -39,12 +40,9 @@ export async function DELETE(
       data: { deletedCampaign },
     })
   } catch (error) {
-    console.error('Error deleting campaign:', error)
+    console.log(error)
 
-    return NextResponse.json({
-      status: 'error',
-      message: 'Failed to delete campaign',
-    })
+    return getErrorResponse(500)
   }
 }
 
@@ -63,19 +61,12 @@ export async function PUT(
 
   const { id } = params
 
-  const body = (await req.json()) as UpdateCampaignInput
-
-  const { title, description, goal, totalRaised, pixKey } =
-    UpdateCampaignSchema.parse(body)
-
-  if (!title || !description || !pixKey) {
-    return NextResponse.json({
-      status: 'fail',
-      data: {},
-    })
-  }
-
   try {
+    const body = (await req.json()) as UpdateCampaignInput
+
+    const { title, description, goal, totalRaised, pixKey } =
+      UpdateCampaignSchema.parse(body)
+
     const campaign = await prisma.campaign.findUnique({
       where: { id, userId },
     })
@@ -108,11 +99,12 @@ export async function PUT(
       data: { campaign },
     })
   } catch (error) {
-    console.error('Error deleting campaign:', error)
+    console.log(error)
 
-    return NextResponse.json({
-      status: 'error',
-      message: 'Failed to delete campaign',
-    })
+    if (error instanceof ZodError) {
+      return getErrorResponse(400, 'failed validations', error)
+    }
+
+    return getErrorResponse()
   }
 }

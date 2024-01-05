@@ -1,3 +1,4 @@
+import { getErrorResponse } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
 import { NextRequest, NextResponse } from 'next/server'
 
@@ -15,11 +16,7 @@ export async function POST(
     })
 
     if (!transaction) {
-      return NextResponse.json({
-        data: {},
-        status: 'fail',
-        message: 'Transaction not found',
-      })
+      return getErrorResponse(404, 'Transaction not found')
     }
 
     await prisma.$transaction([
@@ -42,16 +39,12 @@ export async function POST(
     ])
 
     return NextResponse.json({
-      data: {},
-      status: 'Ok',
+      status: 'sucess',
       message: 'Transaction completed',
     })
-  } catch (err) {
-    console.log(err)
-    return NextResponse.json({
-      data: {},
-      status: 'error',
-      message: 'Internal server error',
-    })
+  } catch (error) {
+    console.log(error)
+
+    return getErrorResponse()
   }
 }

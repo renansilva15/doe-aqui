@@ -16,7 +16,7 @@ export function getEnvVariable(key: EnvVariableKey): string {
 
 export function getErrorResponse(
   status = 500,
-  message: string,
+  message = 'Internal Server Error',
   errors: ZodError | null = null,
 ) {
   return new NextResponse(
