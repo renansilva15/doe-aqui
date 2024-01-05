@@ -7,7 +7,7 @@ Content-Type: application/json
 {
   "name": "Example",
   "email": "example@example.com",
-  "password": "password123"
+  "password2": "password123"
 }
 
 
@@ -38,7 +38,7 @@ Content-Type: application/json
 }
 
 ### Process Transaction
-POST http://localhost:3000/api/pix/process-transaction/0000
+POST http://localhost:3000/api/pix/process-transaction/0005
 
 ### Fetch Campaigns
 GET {{baseUrl}}/api/campaign
@@ -50,11 +50,12 @@ Content-Type: application/json
 {
   "title": "Test campaign sala",
   "description": "Something nice",
-  "pixKey": "asssdsdsdsd"
+  "pixKey": "asssdsdsdsd",
+  "goal": 23.44
 }
 
 ### Delete Campaign
-DELETE {{baseUrl}}/api/campaign/cb460a08-5f2f-46ac-b73d-21d8769ad9c1
+DELETE {{baseUrl}}/api/campaign/dfe9f852-f381-4344-bf1d-bf588f9dec40
 
 ### Update Campaign
 PUT  {{baseUrl}}/api/campaign/c6f18d86-666c-4daa-9eae-62e8e8309cbf

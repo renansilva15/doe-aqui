@@ -12,16 +12,12 @@ erDiagram
     String email UK
     String password
 }
-"Image" {
-    String id PK
-    String campaign_id FK
-    String url
-}
 "Campaign" {
     String id PK
     String user_id FK
     String title
     String description
+    String imageUrl
     Decimal goal
     Decimal total_raised
     String pix_key
@@ -32,7 +28,6 @@ erDiagram
     Decimal amount
     DateTime created_at
 }
-"Image" }o--|| "Campaign" : campaign
 "Campaign" }o--|| "User" : user
 ```
 
@@ -44,13 +39,6 @@ erDiagram
   - `email`: 
   - `password`: 
 
-### `Image`
-
-**Properties**
-  - `id`: 
-  - `campaign_id`: 
-  - `url`: 
-
 ### `Campaign`
 
 **Properties**
@@ -58,6 +46,7 @@ erDiagram
   - `user_id`: 
   - `title`: 
   - `description`: 
+  - `imageUrl`: 
   - `goal`: 
   - `total_raised`: 
   - `pix_key`: 

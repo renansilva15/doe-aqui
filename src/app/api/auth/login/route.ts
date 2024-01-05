@@ -15,8 +15,12 @@ export async function POST(req: NextRequest) {
       where: { email: data.email },
     })
 
-    if (!user || !(await compare(data.password, user.password))) {
-      return getErrorResponse(401, 'Invalid email or password')
+    if (!user) {
+      return getErrorResponse(404, 'User not found')
+    }
+
+    if (!(await compare(data.password, user.password))) {
+      return getErrorResponse(401, 'Incorrect password')
     }
 
     const JWT_EXPIRES_IN = getEnvVariable('JWT_EXPIRES_IN')
@@ -55,6 +59,8 @@ export async function POST(req: NextRequest) {
 
     return response
   } catch (error: any) {
+    console.log(error)
+
     if (error instanceof ZodError) {
       return getErrorResponse(400, 'failed validations', error)
     }

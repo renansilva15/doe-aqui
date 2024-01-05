@@ -34,6 +34,8 @@ export async function POST(req: NextRequest) {
       },
     )
   } catch (error: any) {
+    console.log(error)
+
     if (error instanceof ZodError) {
       return getErrorResponse(400, 'failed validations', error)
     }

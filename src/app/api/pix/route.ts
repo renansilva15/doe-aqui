@@ -1,12 +1,13 @@
+import { getErrorResponse } from '@/lib/helpers'
 import { prisma } from '@/lib/prisma'
 import { pix } from '@klawdyo/pix.js'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(req: NextRequest) {
-  const body = await req.json()
-  const { campaignId, amount } = body
-
   try {
+    const body = await req.json()
+    const { campaignId, amount } = body
+
     const campaign = await prisma.campaign.findUnique({
       where: {
         id: campaignId,
@@ -14,11 +15,7 @@ export async function POST(req: NextRequest) {
     })
 
     if (!campaign) {
-      return NextResponse.json({
-        data: {},
-        status: 'fail',
-        message: 'Campaign not found',
-      })
+      return getErrorResponse(404, 'Campaign not found')
     }
 
     const pixKey = campaign.pixKey
@@ -45,17 +42,20 @@ export async function POST(req: NextRequest) {
       txId,
     }
 
-    return NextResponse.json({
-      data,
-    })
-  } catch (err) {
-    console.log(err)
+    return new NextResponse(
+      JSON.stringify({
+        status: 'success',
+        data,
+      }),
+      {
+        status: 201,
+        headers: { 'Content-Type': 'application/json' },
+      },
+    )
+  } catch (error) {
+    console.log(error)
 
-    return NextResponse.json({
-      data: {},
-      status: 'error',
-      message: 'Internal Server Error',
-    })
+    return getErrorResponse()
   }
 }
 

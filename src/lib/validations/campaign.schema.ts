@@ -16,6 +16,7 @@ export const RegisterCampaignSchema = z.object({
       required_error: 'Pix Key is required',
     })
     .min(1, 'Pix Key must not be empty'),
+  goal: z.number().min(0, 'Goal must be a positive number').optional(),
 })
 
 export const UpdateCampaignSchema = z.object({
