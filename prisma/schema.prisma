@@ -26,28 +26,19 @@ model User {
   campaigns Campaign[]
 }
 
-model Image {
-  id         String @id @default(uuid())
-  campaignId String @map("campaign_id")
-
-  url String
-
-  campaign Campaign @relation(fields: [campaignId], references: [id])
-}
-
 model Campaign {
   id     String @id @default(uuid())
   userId String @map("user_id")
 
   title       String
   description String
+  imageUrl    String
   goal        Decimal @default(0)
   totalRaised Decimal @default(0) @map("total_raised")
 
   pixKey String @map("pix_key")
 
-  user   User    @relation(fields: [userId], references: [id])
-  images Image[]
+  user User @relation(fields: [userId], references: [id])
 }
 
 model Pix {
