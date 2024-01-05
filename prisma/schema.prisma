@@ -49,3 +49,10 @@ model Campaign {
   user   User    @relation(fields: [userId], references: [id])
   images Image[]
 }
+
+model Pix {
+  campaignId String   @map("campaign_id")
+  txId       String   @unique @map("tx_id")
+  amount     Decimal
+  createdAt  DateTime @default(now()) @map("created_at")
+}
