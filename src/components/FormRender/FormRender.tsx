@@ -8,7 +8,7 @@ export const FormRender = () => {
     e.preventDefault()
 
     const formData = new FormData(e.currentTarget)
-    let datelocale = new Date()
+    const datelocale = new Date()
       .toLocaleDateString()
       .toString()
       .replaceAll('/', '_')
