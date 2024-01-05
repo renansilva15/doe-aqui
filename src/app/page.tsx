@@ -6,6 +6,7 @@ import { FaHeart } from 'react-icons/fa'
 import { LuHeartHandshake } from 'react-icons/lu'
 import { PiHandHeartFill } from 'react-icons/pi'
 import { FaPix } from 'react-icons/fa6'
+import { useState, useEffect } from 'react'
 
 import bg from './../../public/bg.webp'
 import Card from '@/components/Card/Card'
@@ -17,8 +18,22 @@ import Button from '@/components/Button/Button'
 import FormRender from '@/components/FormRender/FormRender'
 
 export default function Home() {
-  // const qrCodeData =
-  //   '00020126360014BR.GOV.BCB.PIX0114+558999430173852040000530398654040.105802BR5904null6004null62440506ASD12350300017BR.GOV.BCB.BRCODE01051.0.06304A476'
+  const [isLogged, setIsLogged] = useState(false)
+  useEffect(() => {
+    const isLoggedIn = document.cookie.split(';').some((cookie) => {
+      return cookie.trim().startsWith('logged-in=')
+    })
+
+    if (isLoggedIn) {
+      // O cookie 'logged-in' existe
+      console.log('O usuário está logado.')
+      setIsLogged(true)
+    } else {
+      // O cookie 'logged-in' não existe
+      console.log('O usuário não está logado.')
+      setIsLogged(false)
+    }
+  }, [])
 
   return (
     <main className="w-full flex flex-col items-center justify-start relative">
@@ -29,30 +44,27 @@ export default function Home() {
         <Navbar.Root>
           <Navbar.Logo />
           <Navbar.Content>
-            <Navbar.Item title="Inicio" href="#home" active={true} />
+            <Navbar.Item title="Inicio" href="#home" />
             <Navbar.Item title="Campanhas" href="#campaing" />
             <Navbar.Item title="Contato" href="#contact" />
             <Navbar.Item title="Sobre" href="#about" />
             <Navbar.Divider />
-            <Navbar.Item title="Cadastre-se" href="/" />
-            <Navbar.Item title="Entrar" href="/" />
+            {!isLogged && <Navbar.Item title="Cadastre-se" href="/auth/sign" />}
+            {!isLogged && <Navbar.Item title="Entrar" href="/auth/login" />}
+
+            {isLogged && <Navbar.Item title="Minha conta" href="/" />}
+            {isLogged && <Navbar.Item title="Sair" href="/" action={true} />}
           </Navbar.Content>
         </Navbar.Root>
 
         <Overlay />
-        <Image
-          src={bg}
-          alt="bg"
-          fill
-          objectFit="cover"
-          className="-z-20 absolute"
-        />
+        <Image src={bg} alt="bg" fill className="-z-20 absolute object-cover" />
 
         <div className="w-full min-h-full gap-4 flex flex-col flex-1 items-center justify-center -mt-16">
           <h1 className="text-3xl text-center font-semibold text-primary-50">
             Dê vida à sua causa <br /> Comece sua campanha hoje mesmo!
           </h1>
-          <Button title="Criar minha campanha" style="PRIMARY" width="AUTO">
+          <Button title="Criar minha campanha" base="PRIMARY" width="AUTO">
             <FaHeart className="text-2xl my-1" />
           </Button>
         </div>

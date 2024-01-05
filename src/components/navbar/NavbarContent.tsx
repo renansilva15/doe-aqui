@@ -19,7 +19,7 @@ export const NavbarContent = ({ children }: NavbarContentProps) => {
       }
     }
 
-    window.addEventListener('resize', handleResize)
+    window.addEventListener('resize', handleResize, { passive: true })
     handleResize()
 
     return () => {

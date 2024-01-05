@@ -1,21 +1,25 @@
-import Link from 'next/link'
-
 interface NavbarItemProps {
   title: string
   href: string
-  active?: boolean
+  action?: boolean
 }
 
-export const NavbarItem = ({ title, href, active }: NavbarItemProps) => {
+export const NavbarItem = ({ title, href, action }: NavbarItemProps) => {
+  function handleLogout() {
+    document.cookie =
+      'logged-in=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
+  }
+  if (action) {
+    handleLogout()
+  }
+
   return (
-    <Link
+    <a
       href={href}
-      className={`${
-        active && 'underline'
-      } transition-all duration-200 hover:text-primary-200`}
+      className={`transition-all duration-200 hover:text-primary-200`}
     >
       {title}
-    </Link>
+    </a>
   )
 }
 

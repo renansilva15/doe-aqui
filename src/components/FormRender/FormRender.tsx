@@ -37,7 +37,7 @@ export const FormRender = () => {
         />
       </div>
       <div className="flex flex-col items-start justify-start w-full">
-        <Button width="MAX" style="SECONDARY" title="Enviar"></Button>
+        <Button width="MAX" base="SECONDARY" title="Enviar"></Button>
       </div>
     </form>
   )

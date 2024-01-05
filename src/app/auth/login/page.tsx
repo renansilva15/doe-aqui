@@ -9,6 +9,50 @@ import { useRouter } from 'next/navigation'
 
 export default function Login() {
   const router = useRouter()
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    const url = process.env.NEXT_PUBLIC_BASE_URL
+
+    const formData = new FormData(e.currentTarget)
+
+    const email = formData.get('login-email')?.toString() ?? ''
+    const password = formData.get('login-password')?.toString() ?? ''
+
+    console.log(email, password)
+
+    if (email === '' || password === '') {
+      console.log('Preencha todos os campos')
+      alert('Preencha todos os campos')
+    } else if (password.length < 8) {
+      console.log('A senha deve conter no mínimo 8 caracteres')
+      alert('A senha deve conter no mínimo 8 caracteres')
+    } else {
+      const res = await fetch(`${url}/api/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      })
+
+      const data = await res.json()
+
+      if (data.error) {
+        console.log(data.error)
+        alert(data.error)
+      } else {
+        if (data.status === 'success') {
+          router.push('/')
+        } else alert('Erro ao logar')
+        console.log(data)
+      }
+    }
+  }
+
   return (
     <main className="w-full h-screen flex flex-col items-center justify-center relative">
       <Overlay />
@@ -16,12 +60,15 @@ export default function Login() {
         src="/bg.webp"
         alt="bg"
         fill
-        objectFit="cover"
-        className="-z-20 absolute"
+        className="-z-20 absolute object-cover"
       />
 
       <div className="flex flex-col items-center justify-center w-full p-8 bg-primary-900/40  text-primary-50 gap-4 md:p-16 md:rounded-lg md:w-[460px]">
-        <form className="flex flex-col items-center justify-center w-full gap-3">
+        <form
+          id="loginForm"
+          onSubmit={handleSubmit}
+          className="flex flex-col items-center justify-center w-full gap-3"
+        >
           <Input
             label="Email"
             placeholder='Ex: "exemple@gmail.com"'
@@ -38,11 +85,16 @@ export default function Login() {
         <div className="grid grid-cols-2 gap-4 w-full">
           <Button
             width="MAX"
-            style="OUTLINED"
+            base="OUTLINED"
             title="Cadastre se"
-            action={() => router.push('/auth/sign')}
+            onClick={() => router.push('/auth/sign')}
           ></Button>
-          <Button width="MAX" style="PRIMARY" title="Login"></Button>
+          <Button
+            width="MAX"
+            base="PRIMARY"
+            title="Login"
+            form="loginForm"
+          ></Button>
         </div>
       </div>
     </main>

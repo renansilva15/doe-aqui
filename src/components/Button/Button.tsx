@@ -3,8 +3,8 @@ import { ReactNode } from 'react'
 type ButtonStyle = 'PRIMARY' | 'SECONDARY' | 'OUTLINED'
 type ButtonWidth = 'AUTO' | 'MAX'
 
-interface ButtonProps {
-  style: ButtonStyle
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  base: ButtonStyle
   width: ButtonWidth
   title: string
   children?: ReactNode
@@ -12,19 +12,20 @@ interface ButtonProps {
 }
 
 export const Button = ({
-  style,
+  base,
   width,
   title,
   children,
-  action,
+
+  ...rest
 }: ButtonProps) => {
   return (
     <button
-      onClick={action}
+      {...rest}
       className={`${
-        style === 'PRIMARY'
+        base === 'PRIMARY'
           ? 'bg-primary-500 text-primary-50'
-          : style === 'SECONDARY'
+          : base === 'SECONDARY'
           ? 'bg-primary-50 text-primary-500'
           : 'bg-transparent text-primary-50 border-primary-50 border-2'
       } 
