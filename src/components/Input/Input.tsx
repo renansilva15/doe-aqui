@@ -1,4 +1,4 @@
-type InputType = 'text' | 'password' | 'email' | 'tel'
+type InputType = 'text' | 'password' | 'email' | 'tel' | 'number'
 
 interface InputProps {
   type: InputType
