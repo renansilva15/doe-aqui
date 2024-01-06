@@ -1,3 +1,7 @@
+'use client'
+
+import { useRouter } from 'next/navigation'
+
 interface NavbarItemProps {
   title: string
   href: string
@@ -5,21 +9,27 @@ interface NavbarItemProps {
 }
 
 export const NavbarItem = ({ title, href, action }: NavbarItemProps) => {
-  function handleLogout() {
-    document.cookie =
-      'logged-in=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
-  }
-  if (action) {
-    handleLogout()
+  const router = useRouter()
+  async function handleLogout() {
+    const url = process.env.NEXT_PUBLIC_BASE_URL
+    await fetch(`${url}/api/auth/logout`, {
+      method: 'POST',
+    })
   }
 
   return (
-    <a
-      href={href}
+    <button
+      onClick={() => {
+        if (action) {
+          handleLogout()
+        } else {
+          router.push(href)
+        }
+      }}
       className={`transition-all duration-200 hover:text-primary-200`}
     >
       {title}
-    </a>
+    </button>
   )
 }
 

@@ -7,6 +7,7 @@ import { LuHeartHandshake } from 'react-icons/lu'
 import { PiHandHeartFill } from 'react-icons/pi'
 import { FaPix } from 'react-icons/fa6'
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 import bg from './../../public/bg.webp'
 import Card from '@/components/Card/Card'
@@ -18,6 +19,7 @@ import Button from '@/components/Button/Button'
 import FormRender from '@/components/FormRender/FormRender'
 
 export default function Home() {
+  const router = useRouter()
   const [isLogged, setIsLogged] = useState(false)
   useEffect(() => {
     const isLoggedIn = document.cookie.split(';').some((cookie) => {
@@ -34,6 +36,15 @@ export default function Home() {
       setIsLogged(false)
     }
   }, [])
+
+  function ctaButton() {
+    if (isLogged) {
+      router.push('/campaing')
+    } else {
+      alert('Faça login para criar sua campanha!')
+      router.push('/auth/login')
+    }
+  }
 
   return (
     <main className="w-full flex flex-col items-center justify-start relative">
@@ -64,7 +75,12 @@ export default function Home() {
           <h1 className="text-3xl text-center font-semibold text-primary-50">
             Dê vida à sua causa <br /> Comece sua campanha hoje mesmo!
           </h1>
-          <Button title="Criar minha campanha" base="PRIMARY" width="AUTO">
+          <Button
+            onClick={ctaButton}
+            title="Criar minha campanha"
+            base="PRIMARY"
+            width="AUTO"
+          >
             <FaHeart className="text-2xl my-1" />
           </Button>
         </div>
