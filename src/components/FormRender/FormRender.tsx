@@ -35,6 +35,9 @@ export const FormRender = () => {
     })
       .then((response) => response.json())
       .then((data) => console.log(data))
+
+    alert('Obrigado pelo seu feedback!!!')
+    e.currentTarget.reset()
   }
 
   return (
