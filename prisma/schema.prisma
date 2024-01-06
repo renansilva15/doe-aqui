@@ -32,7 +32,7 @@ model Campaign {
 
   title       String
   description String
-  imageUrl    String
+  imageUrl    String?
   goal        Decimal @default(0)
   totalRaised Decimal @default(0) @map("total_raised")
 

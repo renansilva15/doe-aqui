@@ -17,7 +17,7 @@ erDiagram
     String user_id FK
     String title
     String description
-    String imageUrl
+    String imageUrl "nullable"
     Decimal goal
     Decimal total_raised
     String pix_key
