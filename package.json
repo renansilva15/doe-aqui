@@ -12,6 +12,8 @@
     "@klawdyo/pix.js": "^0.9.0-a",
     "@prisma/client": "^5.4.1",
     "bcryptjs": "^2.4.3",
+    "firebase": "^10.7.1",
+    "formidable": "^3.5.1",
     "jose": "^5.0.1",
     "next": "13.5.4",
     "pixbr": "^1.0.0",
@@ -25,6 +27,7 @@
   "devDependencies": {
     "@rocketseat/eslint-config": "^1.2.0",
     "@types/bcryptjs": "^2.4.5",
+    "@types/formidable": "^3.4.5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
