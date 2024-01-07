@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 interface NavbarItemProps {
   title: string
   href: string
-  action?: boolean
+  action?: () => void
 }
 
 export const NavbarItem = ({ title, href, action }: NavbarItemProps) => {
@@ -22,6 +22,7 @@ export const NavbarItem = ({ title, href, action }: NavbarItemProps) => {
       onClick={() => {
         if (action) {
           handleLogout()
+          action()
         } else {
           router.push(href)
         }

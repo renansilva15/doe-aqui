@@ -64,7 +64,13 @@ export default function Home() {
             {!isLogged && <Navbar.Item title="Entrar" href="/auth/login" />}
 
             {isLogged && <Navbar.Item title="Minha conta" href="/" />}
-            {isLogged && <Navbar.Item title="Sair" href="/" action={true} />}
+            {isLogged && (
+              <Navbar.Item
+                title="Sair"
+                href="/"
+                action={() => setIsLogged(false)}
+              />
+            )}
           </Navbar.Content>
         </Navbar.Root>
 
