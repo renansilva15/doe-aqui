@@ -70,3 +70,6 @@ Content-Type: application/json
   "totalRaised": 25.40,
   "pixKey": "asssdsdsdsd"
 }
+
+###
+POST http://localhost:3000/api/upload

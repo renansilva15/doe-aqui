@@ -9,6 +9,9 @@ import {
 } from 'firebase/storage'
 import { initializeApp } from 'firebase/app'
 import { firebaseConfig } from '@/config/firebase.config'
+import { verifyJWT } from '@/lib/token'
+import { getCookies } from '@/lib/get-cookies'
+import { isTokenValid } from '@/lib/is-token-valid'
 
 type FormParseResult = {
   fields: Fields
@@ -27,6 +30,15 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
+  const cookies = getCookies(req)
+
+  if (!(await isTokenValid(cookies.token))) {
+    return res.status(401).json({
+      status: 'fail',
+      message: 'You are not logged in, please provide token to gain access',
+    })
+  }
+
   try {
     const data = await parseFormData(req)
 
