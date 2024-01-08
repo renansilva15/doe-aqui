@@ -32,16 +32,25 @@ const ImgCut = ({ setFile, close }: ImgCutProps) => {
 
   const handleUpload = () => {
     // 'editor' é uma referência ao componente AvatarEditor
-    const canvas = editor.getImageScaledToCanvas()
-    canvas.toBlob((blob: Blob | null) => {
-      if (blob) {
-        const file = new File([blob], 'img.jpg', {
-          type: 'image/jpeg',
+
+    if (editor) {
+      const canvas = editor.getImageScaledToCanvas()
+      if (canvas) {
+        canvas.toBlob((blob: Blob | null) => {
+          if (blob) {
+            const file = new File([blob], 'img.jpg', {
+              type: 'image/jpeg',
+            })
+            setFile(file)
+            close()
+          }
         })
-        setFile(file)
+      } else {
         close()
       }
-    })
+    } else {
+      close()
+    }
   }
 
   return (

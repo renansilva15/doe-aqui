@@ -33,7 +33,7 @@ POST http://localhost:3000/api/pix
 Content-Type: application/json
 
 {
-  "campaignId": "9b368618-1218-4e1f-84f3-a3e47902138c",
+  "campaignId": "17e8f7f1-3d0d-4218-a5bd-6b26e8043524",
   "amount": 0.03
 }
 
