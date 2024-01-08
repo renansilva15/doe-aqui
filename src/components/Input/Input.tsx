@@ -16,6 +16,7 @@ export const Input = ({ type, label, placeholder, idName }: InputProps) => {
         id={idName}
         name={idName}
         type={type}
+        {...(type === 'number' && { step: 'any' })}
         placeholder={placeholder}
         className="h-12 w-full text-black rounded-lg bg-primary-50 focus:ring-1 focus:ring-primary-500 pl-1"
       />

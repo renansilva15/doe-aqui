@@ -48,11 +48,11 @@ POST {{baseUrl}}/api/campaign
 Content-Type: application/json
 
 {
-  "title": "Test campaign sala",
-  "description": "Something nice",
-  "pixKey": "asssdsdsdsd",
-  "imageUrl": "sswwew",
-  "goal": 23.44
+  "title": "Test campaisgn sala",
+  "description": "Sometshing nice",
+  "pixKey": "asssdsdssdsd",
+  "imageUrl": "sswwsew",
+  "goal": 232.44
 }
 
 ### Delete Campaign

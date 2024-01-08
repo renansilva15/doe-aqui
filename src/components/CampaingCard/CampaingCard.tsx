@@ -46,12 +46,12 @@ export const CampaingCard = ({
       {openModal && (
         <ModalCampaing>
           <div className="w-full flex flex-col items-center justify-center md:grid md:grid-cols-2 md:p-4 md:items-start md:gap-y-4">
-            <Image
-              src={image || '/img-sample.jpg'}
+            <img
+              src={image}
               alt="card"
               width={500}
               height={500}
-              className="w-full h-auto"
+              className="w-full md:h-96 object-cover"
             />
 
             <div className="w-full flex flex-col items-start justify-center gap-3 p-4 md:pl-4 md:pt-0">
@@ -111,8 +111,8 @@ export const CampaingCard = ({
         className="w-full flex flex-col relative bg-primary-50 shadow-custom rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition-all duration-200"
       >
         <div className="w-full flex relative">
-          <Image
-            src={image || '/img-sample.jpg'}
+          <img
+            src={image}
             alt="card"
             width={500}
             height={500}

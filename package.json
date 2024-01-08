@@ -11,6 +11,7 @@
   "dependencies": {
     "@klawdyo/pix.js": "^0.9.0-a",
     "@prisma/client": "^5.4.1",
+    "@types/react-avatar-editor": "^13.0.2",
     "bcryptjs": "^2.4.3",
     "firebase": "^10.7.1",
     "formidable": "^3.5.1",
@@ -19,6 +20,7 @@
     "pixbr": "^1.0.0",
     "qrcode.react": "^3.1.0",
     "react": "^18",
+    "react-avatar-editor": "^13.0.2",
     "react-dom": "^18",
     "react-google-charts": "^4.0.1",
     "react-icons": "^4.12.0",

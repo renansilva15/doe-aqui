@@ -8,6 +8,7 @@ type Props = {
     campaigns: {
       username: string
       id: string
+      imageUrl: string
       title: string
       description: string
       goal: string
@@ -46,7 +47,7 @@ export const CardRender = () => {
           goal={parseFloat(item.goal)}
           raised={parseFloat(item.totalRaised)}
           pixKey={item.pixKey}
-          image="/img-sample.png"
+          image={item.imageUrl}
         />
       ))}
     </div>
