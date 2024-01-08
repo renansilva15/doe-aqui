@@ -52,7 +52,7 @@ export const ModalDonate = ({ close, id }: ModalDonateProps) => {
           const { pixCode } = data.data
 
           console.log(pixCode)
-          // setPix(data.data.pixCode)
+          setPix(data.data.pixCode)
         }
       }
     }
