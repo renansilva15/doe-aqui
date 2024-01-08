@@ -4,7 +4,7 @@ import Button from '@/components/Button/Button'
 import Input from '@/components/Input/Input'
 import Overlay from '@/components/Overlay/Overlay'
 import Image from 'next/image'
-import { FaCheck, FaUpload } from 'react-icons/fa'
+import { FaCheck, FaPlus, FaUpload } from 'react-icons/fa'
 
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
@@ -193,12 +193,19 @@ export default function Campaing() {
             className="col-span-2 cursor-pointer w-full bg-primary-50 hover:scale-105 text-primary-500 font-semi py-2 px-4 rounded-lg flex items-center justify-start gap-3"
           >
             {archivo ? (
-              <span className="flex gap-3">
+              <span className="flex gap-3  items-center justify-start">
                 <FaCheck className="text-xl" />
-                <span>Imagem selecionada</span>
+                <span className="h-full flex items-center">
+                  Imagem selecionada
+                </span>
               </span>
             ) : (
-              <p>Selecione uma imagem personalizada</p>
+              <span className="flex gap-3 items-center justify-start">
+                <FaPlus className="text-xl" />
+                <span className="h-full flex items-center">
+                  Imagem personalizada
+                </span>
+              </span>
             )}
           </label>
         </form>

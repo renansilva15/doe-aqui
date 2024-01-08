@@ -3,18 +3,20 @@
 import { useState, useEffect } from 'react'
 import { CampaingCard } from '../CampaingCard/CampaingCard'
 
-type Props = {
+export type CampaignProps = {
+  username: string
+  id: string
+  imageUrl: string
+  title: string
+  description: string
+  goal: string
+  totalRaised: string
+  pixKey: string
+}
+
+export type Props = {
   data: {
-    campaigns: {
-      username: string
-      id: string
-      imageUrl: string
-      title: string
-      description: string
-      goal: string
-      totalRaised: string
-      pixKey: string
-    }[]
+    campaigns: CampaignProps[]
   }
 }
 
@@ -40,6 +42,7 @@ export const CardRender = () => {
     <div className="flex flex-col md:grid md:grid-cols-3 w-full px-5 py-8 gap-4 mb-28">
       {data.campaigns.map((item) => (
         <CampaingCard
+          id={item.id}
           key={item.id}
           title={item.title}
           user={item.username}
