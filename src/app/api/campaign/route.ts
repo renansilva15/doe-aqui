@@ -25,13 +25,19 @@ export async function GET() {
           },
         })
 
-        return { username: username?.name, ...processedCampaign }
+        return {
+          username: username?.name,
+          ...processedCampaign,
+        }
       }),
     )
 
+    const stats = await prisma.stats.findFirst()
+    const totalRegisteredCampaigns = stats?.totalRegisteredCampaigns ?? 0
+
     return NextResponse.json({
       status: 'success',
-      data: { campaigns: processedCampaigns },
+      data: { totalRegisteredCampaigns, campaigns: processedCampaigns },
     })
   } catch (error) {
     console.log(error)
