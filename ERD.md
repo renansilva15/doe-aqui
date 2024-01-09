@@ -28,6 +28,10 @@ erDiagram
     Decimal amount
     DateTime created_at
 }
+"Stats" {
+    Int id PK
+    Int total_registered_campaigns
+}
 "Campaign" }o--|| "User" : user
 ```
 
@@ -58,3 +62,9 @@ erDiagram
   - `tx_id`: 
   - `amount`: 
   - `created_at`: 
+
+### `Stats`
+
+**Properties**
+  - `id`: 
+  - `total_registered_campaigns`: 

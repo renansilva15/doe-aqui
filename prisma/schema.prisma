@@ -47,3 +47,8 @@ model Pix {
   amount     Decimal
   createdAt  DateTime @default(now()) @map("created_at")
 }
+
+model Stats {
+  id                       Int @id @default(autoincrement())
+  totalRegisteredCampaigns Int @default(0) @map("total_registered_campaigns")
+}

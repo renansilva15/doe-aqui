@@ -66,6 +66,17 @@ export async function POST(req: NextRequest) {
       },
     })
 
+    const stats = await prisma.stats.findFirst()
+
+    await prisma.stats.update({
+      data: {
+        totalRegisteredCampaigns: stats?.totalRegisteredCampaigns ?? 0 + 1,
+      },
+      where: {
+        id: stats?.id,
+      },
+    })
+
     return new NextResponse(
       JSON.stringify({
         status: 'success',
