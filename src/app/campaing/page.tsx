@@ -48,7 +48,6 @@ export default function Campaing() {
     } else {
       if (parseFloat(goal) <= 0) {
         alert('A meta deve ser maior que 0')
-        return
       } else {
         const res = await fetch(`${url}/api/campaign`, {
           method: 'POST',
@@ -56,9 +55,9 @@ export default function Campaing() {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            title: title,
-            description: description,
-            pixKey: pixKey,
+            title,
+            description,
+            pixKey,
             imageUrl: '/img-sample.png',
             goal: parseFloat(goal),
           }),
@@ -113,7 +112,7 @@ export default function Campaing() {
                 totalRaised: 0,
                 pixKey: dataCampaing.campaign.pixKey,
               }),
-            }
+            },
           )
 
           const data2 = await res.json()
@@ -130,7 +129,7 @@ export default function Campaing() {
           console.error(
             'Erro ao fazer o upload:',
             response.status,
-            response.statusText
+            response.statusText,
           )
         }
       } catch (error) {

@@ -1,7 +1,7 @@
 'use client'
 
 import AvatarEditor from 'react-avatar-editor'
-import react, { Dispatch, SetStateAction, useState } from 'react'
+import { useState } from 'react'
 import { FaUpload } from 'react-icons/fa'
 
 interface SetFileFunction {
@@ -14,7 +14,7 @@ interface ImgCutProps {
 }
 
 const ImgCut = ({ setFile, close }: ImgCutProps) => {
-  const [editor, setEditor] = useState(null)
+  const [editor, setEditor] = useState<AvatarEditor | null>(null)
 
   const [selectedFile, setSelectedFile] = useState('')
   const [archivo, setArchivo] = useState<File | null>(null)
@@ -60,7 +60,7 @@ const ImgCut = ({ setFile, close }: ImgCutProps) => {
       {archivo && (
         <AvatarEditor
           className="scale-[55%] md:scale-100 -mt-20 md:m-0 rounded-lg"
-          ref={(ref: react.SetStateAction<null>) => setEditor(ref)}
+          ref={(ref) => setEditor(ref)}
           image={archivo}
           width={480}
           height={334}
