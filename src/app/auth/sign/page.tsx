@@ -2,17 +2,22 @@
 
 import Button from '@/components/Button/Button'
 import Input from '@/components/Input/Input'
+import Loading from '@/components/Loading/Loading'
 import Overlay from '@/components/Overlay/Overlay'
 import Image from 'next/image'
 
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 export default function Sign() {
-  const router = useRouter()
   const url = process.env.NEXT_PUBLIC_BASE_URL
+  const [loading, setLoading] = useState(false)
+
+  const router = useRouter()
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
+    setLoading(true)
 
     const formData = new FormData(e.currentTarget)
 
@@ -62,6 +67,8 @@ export default function Sign() {
         console.log(data)
       }
     }
+
+    setLoading(false)
   }
   return (
     <main className="w-full h-screen flex flex-col items-center justify-center relative">
@@ -119,6 +126,8 @@ export default function Sign() {
           ></Button>
         </div>
       </div>
+
+      {loading && <Loading />}
     </main>
   )
 }

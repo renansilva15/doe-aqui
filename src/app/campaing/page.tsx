@@ -4,7 +4,7 @@ import Button from '@/components/Button/Button'
 import Input from '@/components/Input/Input'
 import Overlay from '@/components/Overlay/Overlay'
 import Image from 'next/image'
-import { FaCheck, FaPlus, FaUpload } from 'react-icons/fa'
+import { FaCheck, FaPlus } from 'react-icons/fa'
 
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
@@ -112,7 +112,7 @@ export default function Campaing() {
                 totalRaised: 0,
                 pixKey: dataCampaing.campaign.pixKey,
               }),
-            },
+            }
           )
 
           const data2 = await res.json()
@@ -129,7 +129,7 @@ export default function Campaing() {
           console.error(
             'Erro ao fazer o upload:',
             response.status,
-            response.statusText,
+            response.statusText
           )
         }
       } catch (error) {

@@ -2,16 +2,20 @@
 
 import Button from '@/components/Button/Button'
 import Input from '@/components/Input/Input'
+import Loading from '@/components/Loading/Loading'
 import Overlay from '@/components/Overlay/Overlay'
-import Image from 'next/image'
 
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 export default function Login() {
+  const [loading, setLoading] = useState(false)
   const router = useRouter()
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
+    setLoading(true)
     const url = process.env.NEXT_PUBLIC_BASE_URL
 
     const formData = new FormData(e.currentTarget)
@@ -51,6 +55,7 @@ export default function Login() {
         console.log(data)
       }
     }
+    setLoading(false)
   }
 
   return (
@@ -97,6 +102,8 @@ export default function Login() {
           ></Button>
         </div>
       </div>
+
+      {loading && <Loading />}
     </main>
   )
 }

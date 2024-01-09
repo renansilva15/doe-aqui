@@ -115,9 +115,11 @@ export default function Home() {
         </Card>
       </section>
 
-      <section className="py-36 w-full flex items-center justify-center flex-col flex-1 text-primary-500 bg-primary-50">
-        <FaPix className="text-[120px]" />
-        <h1 className="text-5xl font-semibold text-center">Utilizamos PIX</h1>
+      <section className="py-36 md:py-24 w-full flex items-center justify-center flex-col flex-1 text-primary-500 bg-primary-50">
+        <FaPix className="text-[72px] md:text-[120px] mb-4" />
+        <h1 className="text-4xl md:text-5xl font-semibold text-center">
+          Utilizamos PIX
+        </h1>
       </section>
 
       <section

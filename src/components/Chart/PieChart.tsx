@@ -53,7 +53,7 @@ export const PieChart = ({ goal, raised }: PieChartProps) => {
         }}
       />
 
-      <h2 className="text-xl text-primary-500 absolute text-center mt-1 ml-1">
+      <h2 className="text-base text-primary-500 absolute text-center mt-1 ml-1">
         {percent()}%
       </h2>
     </div>

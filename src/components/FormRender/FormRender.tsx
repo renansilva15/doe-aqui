@@ -1,11 +1,17 @@
+'use client'
+
+import { useState } from 'react'
+
 import Button from '../Button/Button'
 import Input from '../Input/Input'
 
 export const FormRender = () => {
   const url = process.env.NEXT_PUBLIC_SHEET_URL || ''
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setLoading(true)
 
     const formData = new FormData(e.currentTarget)
     const datelocale = new Date()
@@ -37,6 +43,7 @@ export const FormRender = () => {
       .then((data) => console.log(data))
 
     alert('Obrigado pelo seu feedback!!!')
+    setLoading(false)
     e.currentTarget.reset()
   }
 

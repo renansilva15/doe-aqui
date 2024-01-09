@@ -3,10 +3,10 @@
 import { IoClose } from 'react-icons/io5'
 import { FormEvent, useState } from 'react'
 import QRCode from 'qrcode.react'
-// import QRCodeComponent from '@/components/QRCode'
 
 import Input from '../Input/Input'
 import Button from '../Button/Button'
+import Loading from '../Loading/Loading'
 
 interface ModalDonateProps {
   close: () => void
@@ -16,9 +16,11 @@ interface ModalDonateProps {
 export const ModalDonate = ({ close, id }: ModalDonateProps) => {
   const url = process.env.NEXT_PUBLIC_BASE_URL
   const [pix, setPix] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
+    setLoading(true)
 
     const formData = new FormData(e.currentTarget)
 
@@ -56,10 +58,13 @@ export const ModalDonate = ({ close, id }: ModalDonateProps) => {
         }
       }
     }
+    setLoading(false)
   }
 
   async function handleProcessTransaction(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
+    setLoading(true)
+
     const formData = new FormData(e.currentTarget)
 
     const id = formData.get('id-donate')?.toString() ?? ''
@@ -81,6 +86,7 @@ export const ModalDonate = ({ close, id }: ModalDonateProps) => {
         close()
       }
     }
+    setLoading(false)
   }
 
   return (
@@ -140,6 +146,8 @@ export const ModalDonate = ({ close, id }: ModalDonateProps) => {
           <IoClose className="text-2xl hover:text-primary-400 hover:cursor-pointer" />
         </div>
       </div>
+
+      {loading && <Loading />}
     </div>
   )
 }
