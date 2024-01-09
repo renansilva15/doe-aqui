@@ -14,7 +14,7 @@ export const PieChart = ({ goal, raised }: PieChartProps) => {
   const [dataGoal, setDataGoal] = useState(goal - raised)
 
   useEffect(() => {
-    if (goal === 0) {
+    if (goal <= 0 || percent() === 100) {
       setDataRaised(100)
       setDataGoal(0)
     }
@@ -24,7 +24,13 @@ export const PieChart = ({ goal, raised }: PieChartProps) => {
     if (goal === 0) return 100
     if (raised === goal) return 100
 
-    return ((raised / goal) * 100).toFixed(0)
+    const result = ((raised / goal) * 100).toFixed(0)
+
+    if (parseInt(result) >= 100) {
+      return 100
+    } else {
+      return parseInt(result)
+    }
   }
 
   return (
