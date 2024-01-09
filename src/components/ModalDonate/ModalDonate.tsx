@@ -1,8 +1,9 @@
 'use client'
 
 import { IoClose } from 'react-icons/io5'
-import { useState } from 'react'
-import QRCodeComponent from '@/components/QRCode'
+import { FormEvent, useState } from 'react'
+import QRCode from 'qrcode.react'
+// import QRCodeComponent from '@/components/QRCode'
 
 import Input from '../Input/Input'
 import Button from '../Button/Button'
@@ -16,7 +17,7 @@ export const ModalDonate = ({ close, id }: ModalDonateProps) => {
   const url = process.env.NEXT_PUBLIC_BASE_URL
   const [pix, setPix] = useState<string | null>(null)
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
     const formData = new FormData(e.currentTarget)
@@ -58,18 +59,66 @@ export const ModalDonate = ({ close, id }: ModalDonateProps) => {
     }
   }
 
+  async function handleProcessTransaction(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    const formData = new FormData(e.currentTarget)
+
+    const id = formData.get('id-donate')?.toString() ?? ''
+
+    if (id === '') {
+      console.log('insira o identificador')
+      alert('insira o identificador')
+    } else {
+      const res = await fetch(`${url}/api/pix/process-transaction/${id}`, {
+        method: 'POST',
+      })
+
+      const data = await res.json()
+      if (data.error) {
+        console.log(data.error)
+        alert(data.error)
+      } else {
+        alert('Doação realizada com sucesso!')
+        close()
+      }
+    }
+  }
+
   return (
     <div className="fixed top-0 left-0 right-0 bottom-0 z-40 bg-primary-900/30 flex">
-      <div className="m-[10%] flex-1 bg-primary-900 gap-3 flex flex-col items-center justify-center px-5 py-16 text-center text-primary-50 relative">
+      <div className="m-[8%] flex-1 bg-primary-900 gap-3 flex flex-col items-center justify-center px-5 py-16 text-center text-primary-50 relative">
         {pix ? (
           <>
             <div className="bg-white p-3 flex items-center justify-center">
-              <QRCodeComponent value={pix} />
+              <QRCode value={pix} />
             </div>
-            <div className="pt-4 flex flex-col items-center justify-center text-center">
+            <div className="pt-4 gap-3 flex flex-col items-center justify-center text-centeremus ">
               <h3>
                 Aponte a câmera do seu celular para o QR Code e faça o pagamento
               </h3>
+
+              <form
+                onSubmit={handleProcessTransaction}
+                className="gap-3 pt-3 flex flex-col items-center justify-center md:items-start md:justify-start max-w-[480px] border-t border-primary-50"
+              >
+                <h3 className="text-xs">
+                  Nos ajude a manter um controle melhor sobre cada doação, ao
+                  fazer o pagamento insira o identificador que apareceno
+                  comprovante no campo abaixo, e lembrem-se,{' '}
+                  <span className="uppercase">
+                    "Vocês são os verdadeiros Heróis"
+                  </span>
+                </h3>
+                <div className="grid grid-cols-2 gap-3">
+                  <Input
+                    label=""
+                    placeholder="Ex: 0021"
+                    type="number"
+                    idName="id-donate"
+                  />
+                  <Button base="PRIMARY" title="OK" width="MAX" />
+                </div>
+              </form>
             </div>
           </>
         ) : (

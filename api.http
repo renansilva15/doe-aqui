@@ -38,7 +38,7 @@ Content-Type: application/json
 }
 
 ### Process Transaction
-POST http://localhost:3000/api/pix/process-transaction/0005
+POST http://localhost:3000/api/pix/process-transaction/0013
 
 ### Fetch Campaigns
 GET {{baseUrl}}/api/campaign
