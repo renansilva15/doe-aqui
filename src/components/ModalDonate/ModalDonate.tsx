@@ -111,7 +111,7 @@ export const ModalDonate = ({ close, id }: ModalDonateProps) => {
                   fazer o pagamento insira o identificador que apareceno
                   comprovante no campo abaixo, e lembrem-se,{' '}
                   <span className="uppercase">
-                    "Vocês são os verdadeiros Heróis"
+                    &quot;Vocês são os verdadeiros Heróis&quot;
                   </span>
                 </h3>
                 <div className="grid grid-cols-2 gap-3">
