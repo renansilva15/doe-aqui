@@ -31,7 +31,6 @@ export const ModalDonate = ({ close, id }: ModalDonateProps) => {
     } else {
       if (parseFloat(value) <= 0) {
         alert('O valor deve ser maior que 0')
-        return
       } else {
         const res = await fetch(`${url}/api/pix`, {
           method: 'POST',
