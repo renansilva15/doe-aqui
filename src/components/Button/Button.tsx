@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-type ButtonStyle = 'PRIMARY' | 'SECONDARY' | 'OUTLINED'
+type ButtonStyle = 'PRIMARY' | 'SECONDARY' | 'OUTLINED' | 'DANGER'
 type ButtonWidth = 'AUTO' | 'MAX'
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -27,6 +27,8 @@ export const Button = ({
           ? 'bg-primary-500 text-primary-50'
           : base === 'SECONDARY'
           ? 'bg-primary-50 text-primary-500'
+          : base === 'DANGER'
+          ? 'bg-red-500 text-primary-50'
           : 'bg-transparent text-primary-50 border-primary-50 border-2'
       } 
       ${

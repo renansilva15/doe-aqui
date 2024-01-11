@@ -9,13 +9,14 @@ import { FaCheck, FaPlus } from 'react-icons/fa'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import ImgCut from '@/components/ImgCut/ImgCut'
+import Loading from '@/components/Loading/Loading'
 
 type ResponseData = {
   campaign: {
     description: string
     goal: string
     id: string
-    imageUrl: string | null
+    imageUrl: string
     pixKey: string
     title: string
     totalRaised: string
@@ -26,11 +27,13 @@ type ResponseData = {
 export default function Campaing() {
   const router = useRouter()
 
+  const [loading, setLoading] = useState(false)
   const [modal, setModal] = useState(false)
   const [archivo, setArchivo] = useState<File | null>(null)
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
+    setLoading(true)
     const url = process.env.NEXT_PUBLIC_BASE_URL
 
     const formData = new FormData(e.currentTarget)
@@ -64,15 +67,19 @@ export default function Campaing() {
         })
 
         const data = await res.json()
-        const resData = data.data as ResponseData
+        const resData = data.data
 
-        if (data.error) {
+        console.log(resData)
+
+        if (data.status === 'error') {
           console.log(data.error)
           alert(data.error)
+          setLoading(false)
         } else {
           if (archivo) {
             handleUpload(url as string, resData)
           } else {
+            setLoading(false)
             alert('Campanha cadastrada com sucesso!')
             router.push('/')
           }
@@ -112,7 +119,7 @@ export default function Campaing() {
                 totalRaised: 0,
                 pixKey: dataCampaing.campaign.pixKey,
               }),
-            },
+            }
           )
 
           const data2 = await res.json()
@@ -129,13 +136,14 @@ export default function Campaing() {
           console.error(
             'Erro ao fazer o upload:',
             response.status,
-            response.statusText,
+            response.statusText
           )
         }
       } catch (error) {
         console.error('Erro ao fazer o upload:', error)
       }
     }
+    setLoading(false)
   }
 
   return (
@@ -225,6 +233,7 @@ export default function Campaing() {
       </div>
 
       {modal && <ImgCut close={() => setModal(false)} setFile={setArchivo} />}
+      {loading && <Loading />}
     </main>
   )
 }

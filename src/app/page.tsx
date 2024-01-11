@@ -14,14 +14,17 @@ import Card from '@/components/Card/Card'
 import Overlay from '@/components/Overlay/Overlay'
 import { Navbar } from '@/components/navbar'
 import { TeamCard } from '@/components/TeamCard/TeamCard'
-import CardRender from '@/components/CardRender/CardRender'
+import CardRender, { CampaignProps } from '@/components/CardRender/CardRender'
 import Button from '@/components/Button/Button'
 import FormRender from '@/components/FormRender/FormRender'
 
 export default function Home() {
   const router = useRouter()
   const [isLogged, setIsLogged] = useState(false)
+  const [data, setData] = useState<CampaignProps | null>(null)
+
   useEffect(() => {
+    const url = process.env.NEXT_PUBLIC_BASE_URL
     const isLoggedIn = document.cookie.split(';').some((cookie) => {
       return cookie.trim().startsWith('logged-in=')
     })
@@ -35,6 +38,18 @@ export default function Home() {
       console.log('O usuário não está logado.')
       setIsLogged(false)
     }
+
+    async function getCampaings() {
+      const res = await fetch(`${url}/api/campaign`)
+      const data = await res.json()
+
+      if (data.status === 'success') {
+        console.log(data)
+        setData(data)
+      }
+    }
+
+    if (!data) getCampaings()
   }, [])
 
   function ctaButton() {
@@ -63,7 +78,7 @@ export default function Home() {
             {!isLogged && <Navbar.Item title="Cadastre-se" href="/auth/sign" />}
             {!isLogged && <Navbar.Item title="Entrar" href="/auth/login" />}
 
-            {isLogged && <Navbar.Item title="Minha conta" href="/" />}
+            {isLogged && <Navbar.Item title="Minha conta" href="/account" />}
             {isLogged && (
               <Navbar.Item
                 title="Sair"
@@ -97,7 +112,13 @@ export default function Home() {
           title="Campanhas cadastradas"
           description="Inspire-se e contribua para criar mudanças significativas."
         >
-          <span className="text-[52px] leading-none">665</span>
+          {data ? (
+            <span className="text-[52px] leading-none">
+              {data.data.totalRegisteredCampaigns}
+            </span>
+          ) : (
+            <span className="h-10 w-10 rounded-full border-dashed border-b-2 border-primary-500 animate-spin ease-in-out transition-all duration-500"></span>
+          )}
         </Card>
 
         <Card
@@ -129,7 +150,11 @@ export default function Home() {
         <h1 className="text-3xl text-center font-semibold">
           Contribua para uma campanha
         </h1>
-        <CardRender />
+        {data ? (
+          <CardRender campaigns={data.data.campaigns} />
+        ) : (
+          <h2 className="my-6 h-10 w-10 rounded-full border-dashed border-b-2 border-primary-500 animate-spin ease-in-out transition-all duration-500"></h2>
+        )}
       </section>
 
       <section

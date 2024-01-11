@@ -3,14 +3,14 @@
 import { useSearchParams, useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
 
-import { Props, CampaignProps } from '@/components/CardRender/CardRender'
+import { Campaign } from '@/components/CardRender/CardRender'
 import { PieChart } from '@/components/Chart/PieChart'
 import { ModalDonate } from '@/components/ModalDonate/ModalDonate'
 import Loading from '@/components/Loading/Loading'
 
 export default function View() {
   const url = process.env.NEXT_PUBLIC_BASE_URL
-  const [data, setData] = useState<Props['data']['campaigns'][0] | null>(null)
+  const [data, setData] = useState<Campaign | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
   const [idCampaign, setIdCampaign] = useState<string | null>(null)
   const [modal, setModal] = useState<boolean>(false)
@@ -33,7 +33,7 @@ export default function View() {
 
       if (jsonData.data) {
         const campaign = jsonData.data.campaigns.find(
-          (item: CampaignProps) => item.id === idCampaign,
+          (item: Campaign) => item.id === idCampaign
         )
         console.log(campaign)
         setLoading(false)

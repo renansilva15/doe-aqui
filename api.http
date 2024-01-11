@@ -6,7 +6,7 @@ Content-Type: application/json
 
 {
   "name": "Example",
-  "email": "example@example.com",
+  "email": "example2@example.com",
   "password": "password123"
 }
 
@@ -16,7 +16,7 @@ POST {{baseUrl}}/api/auth/login
 Content-Type: application/json
 
 {
-  "email": "example@example.com",
+  "email": "example2@example.com",
   "password": "password123"
 }
 
@@ -48,10 +48,10 @@ POST {{baseUrl}}/api/campaign
 Content-Type: application/json
 
 {
-  "title": "Test campaisgn sala",
+  "title": "Test campaisgn 4",
   "description": "Sometshing nice",
   "pixKey": "asssdsdssdsd",
-  "imageUrl": "sswwsew",
+  "imageUrl": "/img-sample.png",
   "goal": 232.44
 }
 
