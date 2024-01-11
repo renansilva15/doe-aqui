@@ -73,10 +73,12 @@ export async function POST(req: NextRequest) {
     })
 
     const stats = await prisma.stats.findFirst()
+    const newTotalRegisteredCampaigns =
+      (stats?.totalRegisteredCampaigns ?? 0) + 1
 
     await prisma.stats.update({
       data: {
-        totalRegisteredCampaigns: stats?.totalRegisteredCampaigns ?? 0 + 1,
+        totalRegisteredCampaigns: newTotalRegisteredCampaigns,
       },
       where: {
         id: stats?.id,
