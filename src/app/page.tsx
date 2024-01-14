@@ -218,7 +218,10 @@ export default function Home() {
       </section>
 
       {/* <QRCodeComponent qrCodeData={qrCodeData} /> */}
-      <footer className="bg-primary-500 w-full p-6"></footer>
+      <footer className="bg-primary-500 w-full p-6 flex flex-col items-center justify-center text-primary-50">
+        <h3 className="text-base">DOE AQUI© 2023</h3>
+        <h3 className="text-sm">Todos os direitos reservados.</h3>
+      </footer>
     </main>
   )
 }
