@@ -1,12 +1,13 @@
 'use client'
 
-import { use, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 import Button from '@/components/Button/Button'
 import Loading from '@/components/Loading/Loading'
 import { Campaign } from '@/components/CardRender/CardRender'
 import { MyCampaing } from '@/components/CampaingCard/CampaingCard'
+import { Navbar } from '@/components/navbar'
 
 type User = {
   id: string
@@ -15,8 +16,6 @@ type User = {
 }
 
 export default function Account() {
-  const url = process.env.NEXT_PUBLIC_BASE_URL
-
   const [loading, setLoading] = useState(true)
   const [isLogged, setIsLogged] = useState(false)
   const [data, setData] = useState<Campaign[] | null>(null)
@@ -25,6 +24,7 @@ export default function Account() {
   const router = useRouter()
 
   useEffect(() => {
+    const url = process.env.NEXT_PUBLIC_BASE_URL
     const isLoggedIn = document.cookie.split(';').some((cookie) => {
       return cookie.trim().startsWith('logged-in=')
     })
@@ -64,7 +64,7 @@ export default function Account() {
         console.log('Dados puros: ', resJson.data.campaigns)
 
         const campaigns = resJson.data.campaigns.filter((item: Campaign) => {
-          if (item.username === usuario.name) return item
+          return item.username === usuario.name
         })
 
         console.log('Filtrados:', campaigns)
@@ -80,9 +80,15 @@ export default function Account() {
   }, [user])
 
   return (
-    <main className="w-full h-screen flex flex-col items-center justify-start relative p-4">
+    <main className="w-full h-screen flex flex-col items-center justify-start relative">
+      <Navbar.Root>
+        <Navbar.Logo />
+        <Navbar.Content>
+          <Navbar.Item title="Pagina inicial" href="/" />
+        </Navbar.Content>
+      </Navbar.Root>
       {isLogged && !loading ? (
-        <div className="w-full flex flex-col items-center justify-center gap-3">
+        <div className="w-full flex flex-col items-center justify-center gap-3 p-4 text-primary-500">
           <div className="w-full flex flex-col items-center justify-center">
             <h1 className="text-3xl">{user?.name}</h1>
             <h3 className="text-lg">{user?.email}</h3>
@@ -116,7 +122,7 @@ export default function Account() {
       ) : loading ? (
         <Loading />
       ) : (
-        <div className="flex flex-col items-center justify-center gap-3">
+        <div className="flex flex-col items-center justify-center gap-3 p-4">
           <h1>Faça login para acessar suas informações</h1>
           <div className="grid grid-cols-2 gap-3 w-full">
             <Button

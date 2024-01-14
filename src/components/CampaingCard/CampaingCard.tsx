@@ -1,11 +1,12 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import { PieChart } from '../Chart/PieChart'
 import { useRouter } from 'next/navigation'
 import Button from '../Button/Button'
 import ModalUpdate from '../ModalUpdate/ModalUpdate'
+import { ModalDelete } from '../ModalDelete/ModalDelete'
 
 interface CampaingCardProps {
   title: string
@@ -26,7 +27,6 @@ export const CampaingCard = ({
   raised,
   user,
   id,
-  pixKey,
 }: CampaingCardProps) => {
   const router = useRouter()
 
@@ -81,7 +81,7 @@ export const MyCampaing = ({
   pixKey,
 }: CampaingCardProps) => {
   const [modal, setModal] = useState(false)
-  const router = useRouter()
+  const [delet, setDelet] = useState(false)
 
   return (
     <div className="w-full flex flex-col relative bg-primary-50 shadow-custom rounded-xl overflow-hidden">
@@ -118,7 +118,7 @@ export const MyCampaing = ({
       </div>
       <div className="grid grid-cols-2 p-3 gap-3">
         <Button
-          onClick={() => router.push('/')}
+          onClick={() => setDelet(true)}
           base="DANGER"
           title="Deletar"
           width="MAX"
@@ -133,9 +133,9 @@ export const MyCampaing = ({
 
       {modal && (
         <ModalUpdate
+          id={id}
           description={description}
           goal={goal}
-          id={id}
           imageUrl={image}
           pixKey={pixKey}
           title={title}
@@ -143,6 +143,8 @@ export const MyCampaing = ({
           action={() => setModal(false)}
         />
       )}
+
+      {delet && <ModalDelete id={id} action={() => setDelet(false)} />}
     </div>
   )
 }

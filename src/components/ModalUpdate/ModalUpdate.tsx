@@ -1,25 +1,33 @@
 'use client'
 
 import { FormEvent, useState } from 'react'
-import { useRouter } from 'next/navigation'
 import { FaCheck, FaPlus } from 'react-icons/fa'
 
 import Input from '../Input/Input'
 import Button from '../Button/Button'
-import { Campaign } from '../CardRender/CardRender'
 import ImgCut from '../ImgCut/ImgCut'
 import Loading from '../Loading/Loading'
 
 interface UpdateProps {
+  id: string
   description: string
   goal: number
-  id: string
   imageUrl: string
   pixKey: string
   title: string
   totalRaised: number
 
   action: () => void
+}
+
+type Update = {
+  id: string
+  imageUrl: string
+  title: string
+  description: string
+  goal: string
+  totalRaised: string
+  pixKey: string
 }
 
 export const ModalUpdate = ({
@@ -38,9 +46,113 @@ export const ModalUpdate = ({
   const [modal, setModal] = useState(false)
   const [archivo, setArchivo] = useState<File | null>(null)
 
-  const router = useRouter()
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault()
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {}
+    setLoading(true)
+
+    const formData = new FormData(e.currentTarget)
+
+    const title = formData.get('update-title')?.toString() ?? ''
+    const pixKey = formData.get('update-pixkey')?.toString() ?? ''
+    const goal = formData.get('update-goal')?.toString() ?? ''
+    const raised = formData.get('update-raised')?.toString() ?? ''
+    const description = formData.get('update-description')?.toString() ?? ''
+
+    if (
+      title === '' ||
+      pixKey === '' ||
+      goal === '' ||
+      raised === '' ||
+      description === ''
+    ) {
+      console.log('Preencha todos os campos')
+      alert('Preencha todos os campos')
+    } else {
+      if (parseFloat(goal) <= 0 || parseFloat(raised) < 0) {
+        alert('Sem numeros negativos ou meta zerada')
+      } else if (archivo) {
+        handleUpload({
+          description,
+          goal,
+          id,
+          imageUrl,
+          pixKey,
+          title,
+          totalRaised: raised,
+        })
+      } else {
+        handleUpdate({
+          description,
+          goal,
+          id,
+          imageUrl,
+          pixKey,
+          title,
+          totalRaised: raised,
+        })
+      }
+    }
+  }
+
+  const handleUpload = async (dataCampaing: Update) => {
+    if (archivo) {
+      const formData = new FormData()
+      formData.append('file', archivo)
+      formData.append('campaignId', dataCampaing.id)
+
+      try {
+        const response = await fetch(`${url}/api/upload`, {
+          method: 'POST',
+          body: formData,
+        })
+
+        if (response.ok) {
+          const data = await response.json()
+          console.log('Upload bem-sucedido!', data)
+
+          handleUpdate(dataCampaing, data.data.url)
+        } else {
+          console.error(
+            'Erro ao fazer o upload:',
+            response.status,
+            response.statusText,
+          )
+        }
+      } catch (error) {
+        console.error('Erro ao fazer o upload:', error)
+      }
+    }
+  }
+
+  async function handleUpdate(dataCampaing: Update, image?: string) {
+    const res = await fetch(`${url}/api/campaign/${dataCampaing.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title: dataCampaing.title,
+        description: dataCampaing.description,
+        imageUrl: image || dataCampaing.imageUrl,
+        goal: parseFloat(dataCampaing.goal),
+        totalRaised: parseFloat(dataCampaing.totalRaised),
+        pixKey: dataCampaing.pixKey,
+      }),
+    })
+
+    const data2 = await res.json()
+    console.log(data2)
+
+    if (data2.error) {
+      console.log(data2.error)
+      alert(data2.error)
+    } else {
+      alert('Campanha atualizada com sucesso!')
+      setLoading(false)
+      action()
+    }
+  }
 
   return (
     <div className="fixed top-0 left-0 right-0 bottom-0 z-40 bg-primary-800 flex flex-col text-primary-50 p-4 md:px-10">
@@ -88,7 +200,7 @@ export const ModalUpdate = ({
               id="update-description"
               rows={4}
               className="w-full text-black rounded-lg bg-primary-50 focus:ring-1 focus:ring-primary-500 pl-1"
-              value={description}
+              defaultValue={description}
             ></textarea>
           </div>
 

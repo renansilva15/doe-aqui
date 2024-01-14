@@ -119,7 +119,7 @@ export default function Campaing() {
                 totalRaised: 0,
                 pixKey: dataCampaing.campaign.pixKey,
               }),
-            }
+            },
           )
 
           const data2 = await res.json()
@@ -136,7 +136,7 @@ export default function Campaing() {
           console.error(
             'Erro ao fazer o upload:',
             response.status,
-            response.statusText
+            response.statusText,
           )
         }
       } catch (error) {

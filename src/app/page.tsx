@@ -1,6 +1,5 @@
 'use client'
 
-// import QRCodeComponent from '@/components/QRCode'
 import Image from 'next/image'
 import { FaHeart } from 'react-icons/fa'
 import { LuHeartHandshake } from 'react-icons/lu'
@@ -50,7 +49,7 @@ export default function Home() {
     }
 
     if (!data) getCampaings()
-  }, [])
+  }, [data])
 
   function ctaButton() {
     if (isLogged) {

@@ -4,6 +4,7 @@ import { useState } from 'react'
 
 import Button from '../Button/Button'
 import Input from '../Input/Input'
+import Loading from '../Loading/Loading'
 
 export const FormRender = () => {
   const url = process.env.NEXT_PUBLIC_SHEET_URL || ''
@@ -86,6 +87,8 @@ export const FormRender = () => {
       <div className="flex flex-col items-start justify-start w-full">
         <Button width="MAX" base="SECONDARY" title="Enviar"></Button>
       </div>
+
+      {loading && <Loading />}
     </form>
   )
 }

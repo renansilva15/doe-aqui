@@ -23,8 +23,6 @@ interface CardRenderProps {
 }
 
 export const CardRender = ({ campaigns }: CardRenderProps) => {
-  const url = process.env.NEXT_PUBLIC_BASE_URL
-
   return (
     <div className="flex flex-col md:grid md:grid-cols-3 w-full px-5 py-6 gap-4 mb-20">
       {campaigns.length > 0 ? (

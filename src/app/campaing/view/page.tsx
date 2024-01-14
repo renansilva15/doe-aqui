@@ -33,7 +33,7 @@ export default function View() {
 
       if (jsonData.data) {
         const campaign = jsonData.data.campaigns.find(
-          (item: Campaign) => item.id === idCampaign
+          (item: Campaign) => item.id === idCampaign,
         )
         console.log(campaign)
         setLoading(false)
